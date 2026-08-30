@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quizpoker — Multiplayer</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+  :root{
+    --felt-1:#0b3d2e;
+    --felt-2:#0f4a37;
+    --felt-line: rgba(255,255,255,0.08);
+    --gold:#d4af37;
+    --gold-soft:#e8c96a;
+    --ink:#f4ede0;
+    --ink-dim:#c9c0ac;
+    --card:#12261f;
+    --card-2:#173327;
+    --danger:#c5533f;
+    --ok:#4c9a6b;
+    --radius:14px;
+    --serif:"Iowan Old Style","Georgia",serif;
+    --mono:"SF Mono","Consolas",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;}
+  body{
+    background:
+      radial-gradient(120% 90% at 50% -10%, #124a37 0%, var(--felt-1) 45%, #062319 100%);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:20px 14px 90px;
+  }
+  .wrap{width:100%;max-width:520px;}
+  h1.brand{
+    font-family:var(--serif);
+    font-size:26px;
+    letter-spacing:0.5px;
+    text-align:center;
+    margin:6px 0 4px;
+    color:var(--gold-soft);
+  }
+  .sub{text-align:center;color:var(--ink-dim);font-size:13px;margin-bottom:22px;letter-spacing:0.3px;}
+  .card{
+    background:linear-gradient(180deg,var(--card-2),var(--card));
+    border:1px solid var(--felt-line);
+    border-radius:var(--radius);
+    padding:18px;
+    margin-bottom:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.35);
+  }
+  label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--ink-dim);margin-bottom:6px;}
+  input[type=text],input[type=number]{
+    width:100%;background:#0b1f18;border:1px solid var(--felt-line);color:var(--ink);
+    padding:12px 14px;border-radius:10px;font-size:16px;margin-bottom:12px;outline:none;
+  }
+  input:focus{border-color:var(--gold);}
+  button{
+    font-family:inherit;font-size:15px;font-weight:600;letter-spacing:0.3px;
+    border:none;border-radius:10px;padding:13px 16px;cursor:pointer;
+    transition:transform .08s ease, filter .15s ease;
+  }
+  button:active{transform:scale(0.97);}
+  button:disabled{opacity:0.35;cursor:not-allowed;}
+  .btn-primary{background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#1b1206;width:100%;}
+  .btn-primary:hover{filter:brightness(1.05);}
+  .btn-ghost{background:transparent;border:1px solid var(--felt-line);color:var(--ink);}
+  .btn-danger{background:var(--danger);color:#fff;}
+  .btn-ok{background:var(--ok);color:#06210f;}
+  .row{display:flex;gap:10px;}
+  .row>*{flex:1;}
+  .code-display{
+    font-family:var(--mono);font-size:34px;letter-spacing:8px;text-align:center;
+    color:var(--gold-soft);padding:10px 0;
+  }
+  .muted{color:var(--ink-dim);font-size:13px;}
+  .player-list{display:flex;flex-direction:column;gap:8px;margin:10px 0;}
+  .player-row{
+    display:flex;justify-content:space-between;align-items:center;
+    background:#0b1f18;border-radius:8px;padding:10px 12px;font-size:14px;
+    border:1px solid var(--felt-line);
+  }
+  .player-row.folded{opacity:0.4;}
+  .player-row.turn{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset;}
+  .player-row .name{font-weight:600;}
+  .player-row .tag{font-size:11px;color:var(--gold-soft);margin-left:6px;font-weight:400;}
+  .chips{font-family:var(--mono);color:var(--gold-soft);}
+  .pot-display{
+    text-align:center;padding:16px 0;
+  }
+  .pot-display .amt{font-family:var(--serif);font-size:40px;color:var(--gold-soft);}
+  .pot-display .lbl{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--ink-dim);}
+  .question-card{
+    background:radial-gradient(140% 100% at 50% 0%, #1a3d2c, #0e2a1f);
+    border:1px solid rgba(212,175,55,0.35);
+  }
+  .qtext{font-family:var(--serif);font-size:20px;line-height:1.4;margin-bottom:10px;}
+  .tip{
+    background:#0b1f18;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;
+    padding:10px 12px;margin-top:10px;font-size:14px;color:var(--ink-dim);
+  }
+  .answer-reveal{
+    font-family:var(--serif);font-size:30px;color:var(--gold-soft);text-align:center;padding:8px 0;
+  }
+  .phase-tag{
+    display:inline-block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--gold-soft);border:1px solid var(--gold);border-radius:999px;
+    padding:3px 10px;margin-bottom:10px;
+  }
+  .guess-locked{
+    font-family:var(--mono);font-size:22px;text-align:center;color:var(--gold-soft);
+    background:#0b1f18;border-radius:10px;padding:14px;margin:8px 0;
+  }
+  .actions{display:flex;gap:8px;margin-top:6px;}
+  .actions button{flex:1;}
+  .toast{
+    position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
+    background:#111;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;
+    opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:50;
+  }
+  .toast.show{opacity:0.95;}
+  .hidden{display:none !important;}
+  a.link{color:var(--gold-soft);}
+  .footer-note{text-align:center;font-size:11px;color:var(--ink-dim);margin-top:18px;opacity:0.7;}
+  .config-warning{
+    background:#3a1c1c;border:1px solid var(--danger);border-radius:10px;padding:14px;
+    font-size:13px;line-height:1.5;margin-bottom:16px;
+  }
+  .config-warning code{background:#000;padding:1px 5px;border-radius:4px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="brand">♠ Quizpoker</h1>
+  <div class="sub">Schätzen. Pokern. Gewinnen.</div>
+
+  <div id="configWarning" class="config-warning hidden">
+    Firebase ist noch nicht verbunden. Trag deine <code>firebaseConfig</code> oben im Script-Block ein
+    (Firebase-Projekt anlegen → Realtime Database aktivieren → Web-App-Config kopieren).
+  </div>
+
+  <!-- START SCREEN -->
+  <div id="screen-start" class="card">
+    <label>Dein Name</label>
+    <input type="text" id="nameInput" placeholder="z.B. Anton" maxlength="18">
+    <div class="row">
+      <button class="btn-primary" id="btnCreate">Raum erstellen</button>
+    </div>
+    <div style="height:14px"></div>
+    <label>Raum beitreten</label>
+    <input type="text" id="codeInput" placeholder="Code, z.B. 4821" maxlength="6" style="text-transform:uppercase">
+    <button class="btn-ghost" id="btnJoin" style="width:100%">Beitreten</button>
+  </div>
+
+  <!-- LOBBY -->
+  <div id="screen-lobby" class="card hidden">
+    <div class="phase-tag">Lobby</div>
+    <div class="code-display" id="lobbyCode">----</div>
+    <div class="muted" style="text-align:center;margin-bottom:10px">Code an alle geben, um beizutreten</div>
+    <div class="player-list" id="lobbyPlayers"></div>
+    <div class="muted" id="lobbyHint">Wartet auf den Host...</div>
+    <button class="btn-primary hidden" id="btnStartGame" style="margin-top:12px">Spiel starten (min. 2 Spieler)</button>
+  </div>
+
+  <!-- GAME -->
+  <div id="screen-game" class="hidden">
+
+    <div class="card">
+      <div class="row" style="align-items:center">
+        <div>
+          <div class="muted">Blinds</div>
+          <div style="font-family:var(--mono)" id="blindsDisplay">10 / 20 €</div>
+        </div>
+        <div style="text-align:right">
+          <div class="muted">Hand #</div>
+          <div style="font-family:var(--mono)" id="handNumber">1</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card pot-display">
+      <div class="lbl">Pot</div>
+      <div class="amt" id="potAmount">0 €</div>
+      <div class="muted" id="toCallDisplay"></div>
+    </div>
+
+    <div class="card question-card">
+      <div class="phase-tag" id="phaseTag">Frage</div>
+      <div class="qtext" id="questionText">—</div>
+      <div id="tip1Box" class="tip hidden"></div>
+      <div id="tip2Box" class="tip hidden"></div>
+      <div id="answerBox" class="answer-reveal hidden"></div>
+    </div>
+
+    <div class="card" id="guessCard">
+      <label>Deine Schätzung (geheim)</label>
+      <input type="number" id="guessInput" placeholder="Zahl eingeben">
+      <button class="btn-primary" id="btnLockGuess">Schätzung abgeben</button>
+      <div id="guessLocked" class="guess-locked hidden"></div>
+    </div>
+
+    <div class="card" id="actionCard">
+      <div class="muted" id="turnInfo">—</div>
+      <div class="actions">
+        <button class="btn-danger" id="btnFold">Fold</button>
+        <button class="btn-ghost" id="btnCallCheck">Check</button>
+        <button class="btn-ok" id="btnAllIn">All-In</button>
+      </div>
+      <div style="margin-top:10px" id="raiseRow" class="row">
+        <input type="number" id="raiseInput" placeholder="Erhöhen auf...">
+        <button class="btn-primary" id="btnRaise" style="flex:0 0 90px">Raise</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="player-list" id="gamePlayers"></div>
+    </div>
+
+    <button class="btn-primary hidden" id="btnNextPhase">Weiter →</button>
+    <button class="btn-ghost hidden" id="btnNextHand" style="margin-top:8px">Nächste Frage</button>
+
+  </div>
+
+  <div class="footer-note">Prototyp · Chips sind virtuell, Getränke real 🍻</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================== FIREBASE CONFIG ==================
+   Firebase-Projekt anlegen (console.firebase.google.com), Realtime Database
+   aktivieren (Testmodus reicht fürs Prototyping), Web-App hinzufügen,
+   Config hier eintragen: */
+const firebaseConfig = {
+  apiKey: "AIzaSyAF1kmyCbPZLV8byZn0MTflfht8GkoFxNs",
+  authDomain: "schaetzpott.firebaseapp.com",
+  databaseURL: "https://schaetzpott-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "schaetzpott",
+  storageBucket: "schaetzpott.firebasestorage.app",
+  messagingSenderId: "422919486192",
+  appId: "1:422919486192:web:1d2c1544482863c1e92035"
+};
+/* ======================================================= */
+
+let db = null;
+let firebaseReady = false;
+try {
+  if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "DEIN_API_KEY") {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.database();
+    firebaseReady = true;
+  }
+} catch(e) { console.error(e); }
+if (!firebaseReady) {
+  document.getElementById('configWarning').classList.remove('hidden');
+}
+
+/* ================== BEISPIEL-FRAGEN ==================
+   Ersetzbar durch eigene JSON-Liste gleicher Struktur.
+   answer = numerischer Wert für die Schätzung. */
+const QUESTIONS = [
+  {
+    frage: "Wie viele Stufen hat der Kölner Dom bis zur Aussichtsplattform im Südturm?",
+    tipp1: "Ein typisches zehnstöckiges Bürogebäude hat rund 150-200 Treppenstufen — der Dom übertrifft das um ein Vielfaches.",
+    tipp2: "Die Zahl liegt zwischen 500 und 560.",
+    antwort: 533,
+    quelle: "koelner-dom.de"
+  },
+  {
+    frage: "Wie viele Liter Bier trinkt eine Person in Deutschland im Schnitt pro Jahr?",
+    tipp1: "Umgerechnet ist das weniger als eine Flasche pro Tag.",
+    tipp2: "Die Zahl liegt zwischen 80 und 95 Litern.",
+    antwort: 88,
+    quelle: "Deutscher Brauer-Bund"
+  },
+  {
+    frage: "Wie viele Zacken hat die Krone der Freiheitsstatue?",
+    tipp1: "Jede einzelne Zacke ist über 2,7 Meter lang.",
+    tipp2: "Die Zahl liegt zwischen 5 und 9.",
+    antwort: 7,
+    quelle: "nps.gov"
+  },
+  {
+    frage: "Wie viele Meter lang ist ein olympisches Schwimmbecken?",
+    tipp1: "Es ist exakt doppelt so lang wie ein 'Kurzbahn'-Becken.",
+    tipp2: "Die Zahl liegt zwischen 45 und 55 Metern.",
+    antwort: 50,
+    quelle: "World Aquatics"
+  },
+  {
+    frage: "Wie viele Zähne hat ein erwachsener Mensch normalerweise (inkl. Weisheitszähne)?",
+    tipp1: "Kinder haben deutlich weniger — nur 20 Milchzähne.",
+    tipp2: "Die Zahl liegt zwischen 28 und 34.",
+    antwort: 32,
+    quelle: "Zahnärztekammer"
+  },
+  {
+    frage: "Wie viele Herzen hat ein Oktopus?",
+    tipp1: "Ein Mensch hat eins weniger als der Oktopus.",
+    tipp2: "Die Zahl liegt zwischen 2 und 4.",
+    antwort: 3,
+    quelle: "Smithsonian"
+  },
+  {
+    frage: "Wie viele Espressobohnen braucht man ungefähr für eine Tasse Espresso?",
+    tipp1: "Für einen einfachen Espresso (7g gemahlen) braucht man etwa halb so viele.",
+    tipp2: "Die Zahl liegt zwischen 60 und 80.",
+    antwort: 70,
+    quelle: "Kaffeeröster-Faustregel"
+  },
+  {
+    frage: "Wie viele Meter tief ist das tiefste Schwimmbecken der Welt (Deep Dive Dubai)?",
+    tipp1: "Das Becken ist tiefer, als ein Fußballfeld lang ist.",
+    tipp2: "Die Zahl liegt zwischen 55 und 65 Metern.",
+    antwort: 60,
+    quelle: "Guinness World Records"
+  }
+];
+
+/* ================== STATE ================== */
+const $ = (id) => document.getElementById(id);
+let myId = localStorage.getItem('qp_myid') || ('p_' + Math.random().toString(36).slice(2,10));
+localStorage.setItem('qp_myid', myId);
+let myName = '';
+let roomCode = null;
+let roomRef = null;
+let isHost = false;
+let unsub = null;
+let lastGuessLocked = false;
+
+function toast(msg){
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+function genCode(){
+  return String(Math.floor(1000 + Math.random()*9000));
+}
+
+const START_CHIPS = 1000;
+const SB = 10;
+const BB = 20;
+
+/* ================== ROOM CREATE / JOIN ================== */
+$('btnCreate').addEventListener('click', async () => {
+  if (!firebaseReady) return toast('Firebase nicht konfiguriert');
+  myName = $('nameInput').value.trim();
+  if (!myName) return toast('Name eingeben');
+  const code = genCode();
+  const ref = db.ref('rooms/' + code);
+  await ref.set({
+    status: 'lobby',
+    hostId: myId,
+    dealerIndex: 0,
+    smallBlind: SB,
+    bigBlind: BB,
+    handNumber: 0,
+    createdAt: Date.now(),
+    playersOrder: [myId],
+    players: {
+      [myId]: { name: myName, chips: START_CHIPS, connected: true, isHost: true }
+    }
+  });
+  enterRoom(code, true);
+});
+
+$('btnJoin').addEventListener('click', async () => {
+  if (!firebaseReady) return toast('Firebase nicht konfiguriert');
+  myName = $('nameInput').value.trim();
+  const code = $('codeInput').value.trim();
+  if (!myName) return toast('Name eingeben');
+  if (!code) return toast('Code eingeben');
+  const ref = db.ref('rooms/' + code);
+  const snap = await ref.get();
+  if (!snap.exists()) return toast('Raum nicht gefunden');
+  const room = snap.val();
+  if (room.status !== 'lobby') return toast('Spiel läuft bereits');
+  const order = room.playersOrder || [];
+  if (!order.includes(myId)) order.push(myId);
+  await ref.child('playersOrder').set(order);
+  await ref.child('players/' + myId).set({ name: myName, chips: START_CHIPS, connected: true, isHost: false });
+  enterRoom(code, false);
+});
+
+function enterRoom(code, host){
+  roomCode = code;
+  isHost = host;
+  roomRef = db.ref('rooms/' + code);
+  $('screen-start').classList.add('hidden');
+  $('screen-lobby').classList.remove('hidden');
+  $('lobbyCode').textContent = code;
+  roomRef.on('value', onRoomUpdate);
+  window.addEventListener('beforeunload', () => {
+    roomRef.child('players/' + myId + '/connected').set(false);
+  });
+}
+
+/* ================== ROOM UPDATE / RENDER ================== */
+let currentRoom = null;
+
+function onRoomUpdate(snap){
+  const room = snap.val();
+  if (!room) return;
+  currentRoom = room;
+
+  if (room.status === 'lobby') {
+    renderLobby(room);
+  } else if (room.status === 'playing') {
+    $('screen-lobby').classList.add('hidden');
+    $('screen-game').classList.remove('hidden');
+    renderGame(room);
+  }
+}
+
+function renderLobby(room){
+  const list = $('lobbyPlayers');
+  list.innerHTML = '';
+  const order = room.playersOrder || [];
+  order.forEach(pid => {
+    const p = room.players[pid];
+    if (!p) return;
+    const row = document.createElement('div');
+    row.className = 'player-row';
+    row.innerHTML = `<span class="name">${p.name}${p.isHost ? ' <span class="tag">HOST</span>' : ''}</span><span class="chips">${p.chips} €</span>`;
+    list.appendChild(row);
+  });
+  const btn = $('btnStartGame');
+  if (isHost) {
+    btn.classList.remove('hidden');
+    btn.disabled = order.length < 2;
+    $('lobbyHint').textContent = order.length < 2 ? 'Mind. 2 Spieler nötig' : 'Bereit zum Start';
+  } else {
+    btn.classList.add('hidden');
+    $('lobbyHint').textContent = 'Wartet auf den Host...';
+  }
+}
+
+$('btnStartGame').addEventListener('click', async () => {
+  if (!isHost) return;
+  await startHand(0, 0);
+  await roomRef.child('status').set('playing');
+});
+
+/* ================== HAND / BETTING LOGIC ================== */
+
+function activePlayers(room){
+  return (room.playersOrder || []).filter(pid => room.players[pid]);
+}
+
+async function startHand(dealerIndex, handNumber){
+  const snap = await roomRef.get();
+  const room = snap.val();
+  const order = activePlayers(room);
+  const n = order.length;
+  if (n < 2) return;
+
+  // reset player round state, keep chips
+  const players = {};
+  order.forEach(pid => {
+    players[pid] = {
+      ...room.players[pid],
+      folded: false,
+      allIn: false,
+      bet: 0,
+      totalHandBet: 0,
+      hasActed: false,
+      guess: null
+    };
+  });
+
+  const sbIdx = dealerIndex % n;
+  const bbIdx = (dealerIndex + 1) % n;
+  const sbId = order[sbIdx];
+  const bbId = order[bbIdx];
+
+  const blindLevel = Math.floor(handNumber / 5); // Blinds verdoppeln alle 5 Hände
+  const sb = SB * Math.pow(2, blindLevel);
+  const bb = BB * Math.pow(2, blindLevel);
+
+  players[sbId].bet = Math.min(sb, room.players[sbId].chips);
+  players[sbId].chips = room.players[sbId].chips - players[sbId].bet;
+  players[sbId].totalHandBet = players[sbId].bet;
+
+  players[bbId].bet = Math.min(bb, room.players[bbId].chips);
+  players[bbId].chips = room.players[bbId].chips - players[bbId].bet;
+  players[bbId].totalHandBet = players[bbId].bet;
+
+  const pot = players[sbId].bet + players[bbId].bet;
+  const firstToActIdx = (dealerIndex + 2) % n;
+
+  await roomRef.update({
+    dealerIndex: dealerIndex,
+    handNumber: handNumber,
+    smallBlind: sb,
+    bigBlind: bb,
+    phase: 'guessing',
+    pot: pot,
+    currentBet: bb,
+    turnIndex: firstToActIdx,
+    players: players,
+    playersOrder: order,
+    currentQuestionIndex: Math.floor(Math.random() * QUESTIONS.length),
+    lastAggressorIndex: bbIdx
+  });
+}
+
+function myTurn(room){
+  const order = activePlayers(room);
+  const tid = order[room.turnIndex];
+  return tid === myId;
+}
+
+function advanceTurn(room, order){
+  let idx = room.turnIndex;
+  for (let i=0;i<order.length;i++){
+    idx = (idx + 1) % order.length;
+    const p = room.players[order[idx]];
+    if (!p.folded && !p.allIn) return idx;
+  }
+  return room.turnIndex;
+}
+
+function countActive(room, order){
+  return order.filter(pid => !room.players[pid].folded).length;
+}
+
+async function doAction(type, amount){
+  const snap = await roomRef.get();
+  const room = snap.val();
+  const order = activePlayers(room);
+  if (order[room.turnIndex] !== myId) return;
+
+  const players = { ...room.players };
+  const me = { ...players[myId] };
+  let pot = room.pot;
+  let currentBet = room.currentBet;
+  let lastAggressorIndex = room.lastAggressorIndex;
+
+  if (type === 'fold') {
+    me.folded = true;
+  } else if (type === 'check') {
+    // only valid if currentBet === me.bet
+    me.hasActed = true;
+  } else if (type === 'call') {
+    const diff = Math.min(currentBet - me.bet, me.chips);
+    me.chips -= diff;
+    me.bet += diff;
+    pot += diff;
+    if (me.chips === 0) me.allIn = true;
+    me.hasActed = true;
+  } else if (type === 'raise') {
+    const target = amount;
+    const diff = Math.min(target - me.bet, me.chips);
+    me.chips -= diff;
+    me.bet += diff;
+    pot += diff;
+    currentBet = me.bet;
+    if (me.chips === 0) me.allIn = true;
+    me.hasActed = true;
+    lastAggressorIndex = room.turnIndex;
+    // reset hasActed for everyone else still in
+    order.forEach(pid => {
+      if (pid !== myId && !players[pid].folded && !players[pid].allIn) {
+        players[pid] = { ...players[pid], hasActed: false };
+      }
+    });
+  } else if (type === 'allin') {
+    const diff = me.chips;
+    me.chips = 0;
+    me.bet += diff;
+    pot += diff;
+    me.allIn = true;
+    me.hasActed = true;
+    if (me.bet > currentBet) {
+      currentBet = me.bet;
+      lastAggressorIndex = room.turnIndex;
+      order.forEach(pid => {
+        if (pid !== myId && !players[pid].folded && !players[pid].allIn) {
+          players[pid] = { ...players[pid], hasActed: false };
+        }
+      });
+    }
+  }
+  players[myId] = me;
+  me.totalHandBet = (room.players[myId].totalHandBet || 0) + (me.bet - room.players[myId].bet);
+
+  // check if only one player left unfolded -> award pot immediately
+  const stillIn = order.filter(pid => !players[pid].folded);
+  if (stillIn.length === 1) {
+    const winnerId = stillIn[0];
+    players[winnerId].chips += pot;
+    await roomRef.update({
+      players,
+      pot: 0,
+      currentBet: 0,
+      phase: 'handEndFold',
+      winnerId
+    });
+    return;
+  }
+
+  const nextIdx = advanceTurn({ ...room, players, turnIndex: room.turnIndex }, order);
+
+  // round complete check: everyone active has acted and bet matches currentBet (or is allIn)
+  const roundComplete = order.every(pid => {
+    const p = players[pid];
+    if (p.folded) return true;
+    if (p.allIn) return true;
+    return p.hasActed && p.bet === currentBet;
+  });
+
+  if (roundComplete) {
+    await advancePhase(room, players, pot, order);
+  } else {
+    await roomRef.update({ players, pot, currentBet, turnIndex: nextIdx, lastAggressorIndex });
+  }
+}
+
+async function advancePhase(room, players, pot, order){
+  // reset per-round bets, keep totalHandBet
+  const nextPlayers = {};
+  order.forEach(pid => {
+    nextPlayers[pid] = { ...players[pid], bet: 0, hasActed: false };
+  });
+
+  const nextIdx = (room.dealerIndex + 1) % order.length; // start left of dealer for post-guess rounds
+  let firstActIdx = nextIdx;
+  // skip folded/allin
+  let guard = 0;
+  while ((players[order[firstActIdx]].folded || players[order[firstActIdx]].allIn) && guard < order.length){
+    firstActIdx = (firstActIdx + 1) % order.length;
+    guard++;
+  }
+
+  const flow = ['guessing','tip1','tip2','reveal','handEnd'];
+  const curIdx = flow.indexOf(room.phase);
+  const next = flow[curIdx + 1] || 'handEnd';
+
+  if (next === 'handEnd') {
+    await resolveShowdown(room, players, pot, order);
+    return;
+  }
+
+  await roomRef.update({
+    players: nextPlayers,
+    pot,
+    currentBet: 0,
+    turnIndex: firstActIdx,
+    phase: next
+  });
+}
+
+async function resolveShowdown(room, players, pot, order){
+  const q = QUESTIONS[room.currentQuestionIndex];
+  const stillIn = order.filter(pid => !players[pid].folded);
+  let best = null, bestDiff = Infinity;
+  stillIn.forEach(pid => {
+    const g = players[pid].guess;
+    if (g === null || g === undefined) return;
+    const diff = Math.abs(g - q.antwort);
+    if (diff < bestDiff) { bestDiff = diff; best = pid; }
+  });
+  if (best) players[best].chips += pot;
+  await roomRef.update({
+    players,
+    pot: 0,
+    currentBet: 0,
+    phase: 'showdown',
+    winnerId: best
+  });
+}
+
+async function submitGuess(value){
+  const snap = await roomRef.get();
+  const room = snap.val();
+  const players = { ...room.players };
+  players[myId] = { ...players[myId], guess: value };
+  await roomRef.update({ players });
+}
+
+/* host-only: move from guessing phase into betting once everyone guessed, or host forces next */
+async function hostForceNextPhase(){
+  const snap = await roomRef.get();
+  const room = snap.val();
+  const order = activePlayers(room);
+  await advancePhase(room, room.players, room.pot, order);
+}
+
+async function hostNextHand(){
+  const snap = await roomRef.get();
+  const room = snap.val();
+  const order = activePlayers(room);
+  const nextDealer = (room.dealerIndex + 1) % order.length;
+  const nextHandNum = (room.handNumber || 0) + 1;
+  await startHand(nextDealer, nextHandNum);
+}
+
+/* ================== RENDER GAME ================== */
+function renderGame(room){
+  const order = activePlayers(room);
+  const q = QUESTIONS[room.currentQuestionIndex];
+  $('handNumber').textContent = (room.handNumber || 0) + 1;
+  $('blindsDisplay').textContent = `${room.smallBlind} / ${room.bigBlind} €`;
+  $('potAmount').textContent = `${room.pot} €`;
+
+  const me = room.players[myId];
+  const toCall = room.currentBet - (me?.bet || 0);
+  $('toCallDisplay').textContent = toCall > 0 ? `Zum Mitgehen: ${toCall} €` : '';
+
+  // question card
+  $('questionText').textContent = q ? q.frage : '—';
+  const phaseLabels = {
+    guessing: 'Schätzen & 1. Setzrunde',
+    tip1: 'Tipp 1',
+    tip2: 'Tipp 2',
+    reveal: 'Auflösung',
+    showdown: 'Showdown',
+    handEndFold: 'Hand beendet'
+  };
+  $('phaseTag').textContent = phaseLabels[room.phase] || room.phase;
+
+  $('tip1Box').classList.toggle('hidden', !(room.phase === 'tip1' || room.phase === 'tip2' || room.phase === 'reveal' || room.phase === 'showdown'));
+  if (q) $('tip1Box').textContent = 'Tipp 1: ' + q.tipp1;
+  $('tip2Box').classList.toggle('hidden', !(room.phase === 'tip2' || room.phase === 'reveal' || room.phase === 'showdown'));
+  if (q) $('tip2Box').textContent = 'Tipp 2: ' + q.tipp2;
+
+  const showAnswer = room.phase === 'reveal' || room.phase === 'showdown' || room.phase === 'handEndFold';
+  $('answerBox').classList.toggle('hidden', !showAnswer);
+  if (showAnswer && q) $('answerBox').textContent = 'Antwort: ' + q.antwort;
+
+  // guess card
+  const guessDone = me && me.guess !== null && me.guess !== undefined;
+  const guessPhaseOpen = room.phase === 'guessing';
+  $('guessCard').classList.toggle('hidden', !guessPhaseOpen || guessDone);
+  $('guessLocked').classList.toggle('hidden', !(guessDone && guessPhaseOpen));
+  if (guessDone) $('guessLocked').textContent = 'Deine Schätzung: ' + me.guess + ' (gesperrt)';
+
+  // action card
+  const isMyTurn = myTurn(room) && !me.folded && (room.phase !== 'showdown' && room.phase !== 'handEndFold');
+  const bettingPhase = ['guessing','tip1','tip2','reveal'].includes(room.phase);
+  $('actionCard').classList.toggle('hidden', !bettingPhase);
+  $('turnInfo').textContent = isMyTurn ? 'Du bist am Zug' : (bettingPhase ? 'Warte auf andere Spieler...' : '');
+  const canAct = isMyTurn && bettingPhase;
+  $('btnFold').disabled = !canAct;
+  $('btnCallCheck').disabled = !canAct;
+  $('btnAllIn').disabled = !canAct;
+  $('btnRaise').disabled = !canAct;
+  const toCallNow = room.currentBet - (me?.bet || 0);
+  $('btnCallCheck').textContent = toCallNow > 0 ? `Call (${toCallNow} €)` : 'Check';
+  $('raiseInput').placeholder = `Min. ${room.currentBet + room.bigBlind}`;
+
+  // host controls
+  $('btnNextPhase').classList.toggle('hidden', !(isHost && bettingPhase && !someoneStillToAct(room, order)));
+  $('btnNextHand').classList.toggle('hidden', !(isHost && (room.phase === 'showdown' || room.phase === 'handEndFold')));
+
+  // player list
+  const list = $('gamePlayers');
+  list.innerHTML = '';
+  order.forEach((pid, idx) => {
+    const p = room.players[pid];
+    const row = document.createElement('div');
+    row.className = 'player-row' + (p.folded ? ' folded' : '') + (idx === room.turnIndex ? ' turn' : '');
+    let tags = '';
+    if (idx === room.dealerIndex) tags += ' <span class="tag">D</span>';
+    if (p.folded) tags += ' <span class="tag">Fold</span>';
+    if (p.allIn) tags += ' <span class="tag">All-In</span>';
+    const revealGuess = (room.phase === 'showdown' && !p.folded) ? ` · Tipp: ${p.guess ?? '—'}` : '';
+    const isWinner = room.winnerId === pid && (room.phase === 'showdown' || room.phase === 'handEndFold');
+    row.innerHTML = `<span class="name">${p.name}${tags}${isWinner ? ' 🏆' : ''}${revealGuess}</span><span class="chips">${p.chips} € ${p.bet ? '(+' + p.bet + ')' : ''}</span>`;
+    list.appendChild(row);
+  });
+}
+
+function someoneStillToAct(room, order){
+  return order.some(pid => {
+    const p = room.players[pid];
+    if (p.folded || p.allIn) return false;
+    return !p.hasActed || p.bet !== room.currentBet;
+  });
+}
+
+/* ================== EVENT BINDINGS ================== */
+$('btnLockGuess').addEventListener('click', () => {
+  const v = parseFloat($('guessInput').value);
+  if (isNaN(v)) return toast('Zahl eingeben');
+  submitGuess(v);
+  lastGuessLocked = true;
+});
+
+$('btnFold').addEventListener('click', () => doAction('fold'));
+$('btnCallCheck').addEventListener('click', () => {
+  const room = currentRoom;
+  const me = room.players[myId];
+  if (room.currentBet - me.bet <= 0) doAction('check');
+  else doAction('call');
+});
+$('btnAllIn').addEventListener('click', () => doAction('allin'));
+$('btnRaise').addEventListener('click', () => {
+  const v = parseFloat($('raiseInput').value);
+  if (isNaN(v)) return toast('Betrag eingeben');
+  const room = currentRoom;
+  if (v <= room.currentBet) return toast('Muss höher als aktuelles Gebot sein');
+  doAction('raise', v);
+  $('raiseInput').value = '';
+});
+$('btnNextPhase').addEventListener('click', hostForceNextPhase);
+$('btnNextHand').addEventListener('click', hostNextHand);
+</script>
+</body>
+</html>

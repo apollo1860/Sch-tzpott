@@ -222,6 +222,7 @@
     </div>
 
     <button class="btn-primary hidden" id="btnNextPhase">Weiter →</button>
+    <button class="btn-primary hidden" id="btnRevealAnswer">🤫 Auflösen...</button>
     <button class="btn-ghost hidden" id="btnNextHand" style="margin-top:8px">Nächste Frage</button>
 
   </div>
@@ -480,9 +481,11 @@ async function startHand(dealerIndex, handNumber){
   const sbId = order[sbIdx];
   const bbId = order[bbIdx];
 
-  const blindLevel = Math.floor(handNumber / 5); // Blinds verdoppeln alle 5 Hände
-  const sb = SB * Math.pow(2, blindLevel);
-  const bb = BB * Math.pow(2, blindLevel);
+  const sbLevels = [10, 20, 40, 50, 100]; // Runde 1–5, ab Runde 6 wird der letzte Wert jede Hand verdoppelt
+  const sb = handNumber < sbLevels.length
+    ? sbLevels[handNumber]
+    : sbLevels[sbLevels.length - 1] * Math.pow(2, handNumber - (sbLevels.length - 1));
+  const bb = sb * 2;
 
   players[sbId].bet = Math.min(sb, room.players[sbId].chips);
   players[sbId].chips = room.players[sbId].chips - players[sbId].bet;
@@ -639,7 +642,7 @@ async function advancePhase(room, players, pot, order){
     guard++;
   }
 
-  const flow = ['guessing','tip1','tip2','reveal','handEnd'];
+  const flow = ['guessing','tip1','tip2','preReveal','reveal','handEnd'];
   const curIdx = flow.indexOf(room.phase);
   const next = flow[curIdx + 1] || 'handEnd';
 
@@ -693,6 +696,10 @@ async function hostForceNextPhase(){
   await advancePhase(room, room.players, room.pot, order);
 }
 
+async function hostRevealAnswer(){
+  await roomRef.child('phase').set('reveal');
+}
+
 async function hostNextHand(){
   const snap = await roomRef.get();
   const room = snap.val();
@@ -720,15 +727,18 @@ function renderGame(room){
     guessing: 'Schätzen & 1. Setzrunde',
     tip1: 'Tipp 1',
     tip2: 'Tipp 2',
+    preReveal: 'Letzte Chance...',
     reveal: 'Auflösung',
     showdown: 'Showdown',
     handEndFold: 'Hand beendet'
   };
   $('phaseTag').textContent = phaseLabels[room.phase] || room.phase;
 
-  $('tip1Box').classList.toggle('hidden', !(room.phase === 'tip1' || room.phase === 'tip2' || room.phase === 'reveal' || room.phase === 'showdown'));
+  const tipsVisible = ['tip1','tip2','preReveal','reveal','showdown','handEndFold'].includes(room.phase);
+  $('tip1Box').classList.toggle('hidden', !tipsVisible);
   if (q) $('tip1Box').textContent = 'Tipp 1: ' + q.tipp1;
-  $('tip2Box').classList.toggle('hidden', !(room.phase === 'tip2' || room.phase === 'reveal' || room.phase === 'showdown'));
+  const tip2Visible = ['tip2','preReveal','reveal','showdown','handEndFold'].includes(room.phase);
+  $('tip2Box').classList.toggle('hidden', !tip2Visible);
   if (q) $('tip2Box').textContent = 'Tipp 2: ' + q.tipp2;
 
   const showAnswer = room.phase === 'reveal' || room.phase === 'showdown' || room.phase === 'handEndFold';
@@ -745,6 +755,7 @@ function renderGame(room){
   // action card
   const isMyTurn = myTurn(room) && !me.folded && (room.phase !== 'showdown' && room.phase !== 'handEndFold');
   const bettingPhase = ['guessing','tip1','tip2','reveal'].includes(room.phase);
+  const isPreReveal = room.phase === 'preReveal';
   $('actionCard').classList.toggle('hidden', !bettingPhase);
   $('turnInfo').textContent = isMyTurn ? 'Du bist am Zug' : (bettingPhase ? 'Warte auf andere Spieler...' : '');
   const canAct = isMyTurn && bettingPhase;
@@ -758,6 +769,7 @@ function renderGame(room){
 
   // host controls
   $('btnNextPhase').classList.toggle('hidden', !(isHost && bettingPhase && !someoneStillToAct(room, order)));
+  $('btnRevealAnswer').classList.toggle('hidden', !(isHost && isPreReveal));
   $('btnNextHand').classList.toggle('hidden', !(isHost && (room.phase === 'showdown' || room.phase === 'handEndFold')));
 
   // player list
@@ -811,6 +823,7 @@ $('btnRaise').addEventListener('click', () => {
   $('raiseInput').value = '';
 });
 $('btnNextPhase').addEventListener('click', hostForceNextPhase);
+$('btnRevealAnswer').addEventListener('click', hostRevealAnswer);
 $('btnNextHand').addEventListener('click', hostNextHand);
 </script>
 </body>

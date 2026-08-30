@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Quizpoker — Multiplayer</title>
+<title>Schätzpott — Multiplayer</title>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <style>
@@ -136,7 +136,7 @@
 </head>
 <body>
 <div class="wrap">
-  <h1 class="brand">♠ Quizpoker</h1>
+  <h1 class="brand">♠ Schätzpott</h1>
   <div class="sub">Schätzen. Pokern. Gewinnen.</div>
 
   <div id="configWarning" class="config-warning hidden">
@@ -767,8 +767,10 @@ function renderGame(room){
   $('btnCallCheck').textContent = toCallNow > 0 ? `Call (${toCallNow} €)` : 'Check';
   $('raiseInput').placeholder = `Min. ${room.currentBet + room.bigBlind}`;
 
-  // host controls
-  $('btnNextPhase').classList.toggle('hidden', !(isHost && bettingPhase && !someoneStillToAct(room, order)));
+  // host controls — "Weiter" ist immer als manueller Notausgang sichtbar, unabhängig
+  // von der (fehleranfälligen) automatischen Runden-Erkennung, damit der Host nie feststeckt
+  $('btnNextPhase').classList.toggle('hidden', !(isHost && bettingPhase));
+  $('btnNextPhase').textContent = someoneStillToAct(room, order) ? 'Runde erzwingen →' : 'Weiter →';
   $('btnRevealAnswer').classList.toggle('hidden', !(isHost && isPreReveal));
   $('btnNextHand').classList.toggle('hidden', !(isHost && (room.phase === 'showdown' || room.phase === 'handEndFold')));
 

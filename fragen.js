@@ -366,10 +366,10 @@ window.FRAGEN_POTT = [
     quelle: "Ornithologie"
   },
   {
-    frage: "Aus wie viel Prozent Wasser besteht das menschliche Gehirn (ohne Gehirnwasser)?",
-    tipp1: "Der Wassergehalt ist niedriger als der von Brokkoli (91 %).",
-    tipp2: "Er entspricht etwa dem einer rohen Kartoffel mit Schale.",
-    antwort: 80,
+    frage: "Wie hoch ist der Prozentsatz von Wasser im menschlichen Gehirn?",
+    tipp1: "Wasser ist mit großem Abstand der Hauptbestandteil des Gehirns.",
+    tipp2: "Bananen haben den gleichen Wasseranteil wie das menschliche Gehirn.",
+    antwort: 73,
     quelle: "Biologie"
   },
   {

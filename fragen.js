@@ -2163,5 +2163,313 @@ window.FRAGEN_POTT = [
     tipp2: "Im selben Jahr wurde Schauspieler Zac Efron geboren.",
     antwort: 1987,
     quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie hoch ist der Berliner Fernsehturm (in Metern)?",
+    tipp1: "Er ist das höchste Bauwerk Deutschlands.",
+    tipp2: "Er ist mehr als doppelt so hoch wie der Kölner Dom (157 m).",
+    antwort: 368,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie hoch ist das Brandenburger Tor (in Metern, mit Quadriga)?",
+    tipp1: "Auf ihm steht ein Viergespann mit der Siegesgöttin.",
+    tipp2: "Es ist höher als 20 Meter.",
+    antwort: 26,
+    quelle: "berlin.de"
+  },
+  {
+    frage: "Wie viele Kilometer lang war die Berliner Mauer rund um West-Berlin insgesamt?",
+    tipp1: "Davon verliefen gut 43 km mitten durch die Stadt.",
+    tipp2: "Die Zahl ist dreistellig.",
+    antwort: 155,
+    quelle: "Stiftung Berliner Mauer"
+  },
+  {
+    frage: "Wie viele Brücken hat Hamburg?",
+    tipp1: "Hamburg hat mehr Brücken als Venedig, Amsterdam und London zusammen.",
+    tipp2: "Die Zahl ist vierstellig.",
+    antwort: 2500,
+    quelle: "hamburg.de"
+  },
+  {
+    frage: "Wie viele Grachten (Kanäle) hat Amsterdam?",
+    tipp1: "Der Grachtengürtel gehört zum UNESCO-Welterbe.",
+    tipp2: "Die Zahl ist dreistellig.",
+    antwort: 165,
+    quelle: "amsterdam.nl"
+  },
+  {
+    frage: "Wann wurde die Golden Gate Bridge in San Francisco eröffnet?",
+    tipp1: "Sie war damals die längste Hängebrücke der Welt.",
+    tipp2: "Im selben Jahr explodierte das Luftschiff 'Hindenburg' in Lakehurst.",
+    antwort: 1937,
+    quelle: "goldengate.org"
+  },
+  {
+    frage: "Wie viele Tonnen wiegt die Freiheitsstatue in New York?",
+    tipp1: "Ihre Außenhaut besteht aus Kupfer und ist nur so dick wie zwei Münzen.",
+    tipp2: "Die Zahl ist dreistellig.",
+    antwort: 225,
+    quelle: "nps.gov"
+  },
+  {
+    frage: "Wie viele Zimmer hat das Weiße Haus?",
+    tipp1: "Dazu kommen 35 Badezimmer.",
+    tipp2: "Der Buckingham Palace hat mehr als fünfmal so viele.",
+    antwort: 132,
+    quelle: "whitehouse.gov"
+  },
+  {
+    frage: "Wie viele Kilometer Luftlinie liegen zwischen Berlin und München?",
+    tipp1: "Mit dem ICE-Sprinter dauert die Fahrt etwa vier Stunden.",
+    tipp2: "Hamburg–München ist mit rund 610 km Luftlinie deutlich weiter.",
+    antwort: 504,
+    quelle: "Entfernungsrechner"
+  },
+  {
+    frage: "Wie viele Einwohner hat Liechtenstein?",
+    tipp1: "Das Land hat keine eigene Armee.",
+    tipp2: "Alle Einwohner würden in ein großes Bundesliga-Stadion passen – und es bliebe noch Platz.",
+    antwort: 40000,
+    quelle: "Amt für Statistik Liechtenstein"
+  },
+  {
+    frage: "Wie viele Seen (ab 500 m²) gibt es in Finnland?",
+    tipp1: "Finnland wird 'Land der tausend Seen' genannt – das ist stark untertrieben.",
+    tipp2: "Die Zahl ist sechsstellig.",
+    antwort: 187888,
+    quelle: "Finnisches Umweltinstitut"
+  },
+  {
+    frage: "Wie viele Kilometer lang ist das deutsche Autobahnnetz?",
+    tipp1: "Deutschland hat eines der dichtesten Autobahnnetze der Welt.",
+    tipp2: "Die längste Autobahn, die A7, ist knapp 1.000 km lang.",
+    antwort: 13200,
+    quelle: "Die Autobahn GmbH"
+  },
+  {
+    frage: "In welchem Jahr starb Wolfgang Amadeus Mozart?",
+    tipp1: "Er wurde nur 35 Jahre alt.",
+    tipp2: "Im selben Jahr wurde seine Oper 'Die Zauberflöte' uraufgeführt.",
+    antwort: 1791,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "In welchem Jahr wurde Angela Merkel geboren?",
+    tipp1: "Sie wuchs in der DDR auf, wurde aber in Hamburg geboren.",
+    tipp2: "Im selben Jahr wurde Deutschland zum ersten Mal Fußball-Weltmeister.",
+    antwort: 1954,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "In welchem Jahr ging Wikipedia online?",
+    tipp1: "Die deutschsprachige Version startete nur zwei Monate später.",
+    tipp2: "Im selben Jahr wurde Michael Schumacher zum vierten Mal Formel-1-Weltmeister.",
+    antwort: 2001,
+    quelle: "Wikimedia"
+  },
+  {
+    frage: "In welchem Jahr wurde Spotify gegründet?",
+    tipp1: "Das Unternehmen stammt aus Schweden.",
+    tipp2: "Im selben Jahr fand in Deutschland das 'Sommermärchen' statt.",
+    antwort: 2006,
+    quelle: "Spotify"
+  },
+  {
+    frage: "Wann kam die erste PlayStation in Japan auf den Markt?",
+    tipp1: "In Europa erschien sie ein Jahr später.",
+    tipp2: "Im selben Jahr wurde Justin Bieber geboren.",
+    antwort: 1994,
+    quelle: "Sony"
+  },
+  {
+    frage: "Wann lief die erste Folge der 'Simpsons' als eigene Serie im US-Fernsehen?",
+    tipp1: "Die Berliner Mauer war gerade wenige Wochen zuvor gefallen.",
+    tipp2: "Im selben Jahr wurde Taylor Swift geboren.",
+    antwort: 1989,
+    quelle: "FOX"
+  },
+  {
+    frage: "Wann kam 'Jurassic Park' ins Kino?",
+    tipp1: "Steven Spielberg brachte im selben Jahr auch 'Schindlers Liste' heraus.",
+    tipp2: "Im selben Jahr trat der Vertrag von Maastricht in Kraft und gründete die EU.",
+    antwort: 1993,
+    quelle: "Universal"
+  },
+  {
+    frage: "In welchem Jahr erschien der erste Harry-Potter-Roman im englischen Original?",
+    tipp1: "Die deutsche Ausgabe kam ein Jahr später.",
+    tipp2: "Im selben Jahr starb Prinzessin Diana.",
+    antwort: 1997,
+    quelle: "Bloomsbury"
+  },
+  {
+    frage: "Wie viele Folgen hat die Serie 'Friends' insgesamt?",
+    tipp1: "Die Serie lief zehn Staffeln lang.",
+    tipp2: "Die Zahl liegt zwischen 220 und 250.",
+    antwort: 236,
+    quelle: "IMDb"
+  },
+  {
+    frage: "Wie viele Folgen der 'Lindenstraße' wurden ausgestrahlt?",
+    tipp1: "Die Serie lief von 1985 bis 2020.",
+    tipp2: "Die Zahl ist vierstellig.",
+    antwort: 1758,
+    quelle: "WDR"
+  },
+  {
+    frage: "Wie viel wiegt eine Oscar-Statuette (in kg)?",
+    tipp1: "Die Figur ist rund 34 cm groß.",
+    tipp2: "Sie ist schwerer als eine Packung Mehl und eine Packung Zucker zusammen.",
+    antwort: 3.85,
+    quelle: "Academy of Motion Picture Arts and Sciences"
+  },
+  {
+    frage: "Wie viele Saiten hat eine Konzertharfe?",
+    tipp1: "Die roten Saiten markieren jeweils den Ton C.",
+    tipp2: "Es sind mehr als 40, aber weniger als 50.",
+    antwort: 47,
+    quelle: "Instrumentenkunde"
+  },
+  {
+    frage: "Wie viele Bundesliga-Tore schoss Gerd Müller in seiner Karriere?",
+    tipp1: "Er spielte von 1965 bis 1979 für den FC Bayern.",
+    tipp2: "Robert Lewandowski kam auf 312 Bundesliga-Tore und blieb damit darunter.",
+    antwort: 365,
+    quelle: "DFL"
+  },
+  {
+    frage: "Wie viele Formel-1-Rennen gewann Sebastian Vettel?",
+    tipp1: "Er wurde viermal in Folge Weltmeister.",
+    tipp2: "Michael Schumacher gewann 91 Rennen.",
+    antwort: 53,
+    quelle: "formula1.com"
+  },
+  {
+    frage: "Wie viele Millionen Menschen sahen das WM-Finale 2014 in der ARD?",
+    tipp1: "Es ist bis heute eine der meistgesehenen Sendungen der deutschen TV-Geschichte.",
+    tipp2: "Das entspricht gut 40 % aller Einwohner Deutschlands.",
+    antwort: 34.65,
+    quelle: "AGF/GfK"
+  },
+  {
+    frage: "Wie schnell war der schnellste je gemessene Tennisaufschlag (in km/h)?",
+    tipp1: "Er wurde 2012 von einem Australier geschlagen.",
+    tipp2: "Er war schneller als 250 km/h.",
+    antwort: 263,
+    quelle: "ATP"
+  },
+  {
+    frage: "Wie viele Artikel hat das Grundgesetz?",
+    tipp1: "Der erste Artikel beginnt mit der Würde des Menschen.",
+    tipp2: "Der letzte Artikel regelt, wann das Grundgesetz seine Gültigkeit verliert – seine Nummer ist dreistellig.",
+    antwort: 146,
+    quelle: "Grundgesetz"
+  },
+  {
+    frage: "Wie viele Sterne hat die Flagge der Europäischen Union?",
+    tipp1: "Die Zahl hat nichts mit der Anzahl der Mitgliedsstaaten zu tun.",
+    tipp2: "Es ist dieselbe Zahl wie die der Apostel.",
+    antwort: 12,
+    quelle: "Europäische Union"
+  },
+  {
+    frage: "Wie viele Kalorien hat ein Liter Pils ungefähr?",
+    tipp1: "Eine Maß auf der Wiesn hat damit schon so viel wie eine kleine Mahlzeit.",
+    tipp2: "Ein Liter Coca-Cola hat etwas weniger.",
+    antwort: 430,
+    quelle: "Nährwerttabellen"
+  },
+  {
+    frage: "Wie viel Prozent Alkohol hat Jägermeister?",
+    tipp1: "Er enthält 56 Kräuter.",
+    tipp2: "Es ist deutlich mehr als bei Wein, aber weniger als bei Wodka (37,5 %).",
+    antwort: 35,
+    quelle: "Mast-Jägermeister"
+  },
+  {
+    frage: "Wie viele Tage dauerte die Apollo-11-Mission insgesamt?",
+    tipp1: "Die Astronauten verbrachten rund 21 Stunden auf der Mondoberfläche.",
+    tipp2: "Es war etwas mehr als eine Woche.",
+    antwort: 8,
+    quelle: "NASA"
+  },
+  {
+    frage: "Wie viele Erdtage dauert ein Jahr auf dem Merkur?",
+    tipp1: "Merkur ist der sonnennächste Planet.",
+    tipp2: "Ein Merkurjahr ist kürzer als drei Erdmonate.",
+    antwort: 88,
+    quelle: "NASA"
+  },
+  {
+    frage: "Wie alt wurde Albert Einstein?",
+    tipp1: "Er starb 1955 in den USA.",
+    tipp2: "Er wurde älter als 70, aber jünger als 80.",
+    antwort: 76,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie alt wurde Jeanne Calment, der älteste Mensch mit belegtem Alter?",
+    tipp1: "Sie lebte in Frankreich und soll als Jugendliche noch Vincent van Gogh begegnet sein.",
+    tipp2: "Sie wurde älter als 120.",
+    antwort: 122,
+    quelle: "Guinness World Records"
+  },
+  {
+    frage: "Wie alt wurde Methusalem laut Bibel?",
+    tipp1: "Er gilt als ältester Mensch der Bibel.",
+    tipp2: "Er verpasste die 1000 nur knapp.",
+    antwort: 969,
+    quelle: "Bibel, Genesis 5"
+  },
+  {
+    frage: "Wie viele Augen hat eine Honigbiene?",
+    tipp1: "Neben den zwei großen Facettenaugen hat sie noch weitere.",
+    tipp2: "Es ist eine ungerade Zahl.",
+    antwort: 5,
+    quelle: "Zoologie"
+  },
+  {
+    frage: "Wie viele Beine hat ein Hummer (Scheren mitgezählt)?",
+    tipp1: "Die beiden großen Scheren zählen mit.",
+    tipp2: "Er hat mehr Beine als eine Spinne.",
+    antwort: 10,
+    quelle: "Zoologie"
+  },
+  {
+    frage: "Wie viele Tage dauert die Trächtigkeit einer Hauskatze ungefähr?",
+    tipp1: "Es ist etwas mehr als zwei Monate.",
+    tipp2: "Bei Hunden ist es fast gleich lang.",
+    antwort: 65,
+    quelle: "Tiermedizin"
+  },
+  {
+    frage: "Wie viele Felder hat ein klassisches Monopoly-Spielbrett?",
+    tipp1: "Los, Gefängnis, Frei Parken und 'Gehe ins Gefängnis' liegen jeweils in einer Ecke.",
+    tipp2: "Es sind weniger Felder, als ein Pokerblatt Karten hat.",
+    antwort: 40,
+    quelle: "Hasbro"
+  },
+  {
+    frage: "Wie viele Steine hat ein klassisches Domino-Spiel (Doppel-Sechs)?",
+    tipp1: "Die Augenzahlen auf den Hälften reichen von 0 bis 6.",
+    tipp2: "Es sind weniger als 30.",
+    antwort: 28,
+    quelle: "Spielregeln"
+  },
+  {
+    frage: "Wie viele Buchstabensteine hat ein deutsches Scrabble-Spiel?",
+    tipp1: "Zwei davon sind Joker ohne Buchstaben.",
+    tipp2: "Es sind etwas mehr als 100.",
+    antwort: 102,
+    quelle: "Mattel"
+  },
+  {
+    frage: "Wie viele Zeichen durfte eine klassische SMS maximal haben?",
+    tipp1: "Ein Tweet durfte anfangs etwas kürzer sein.",
+    tipp2: "Die Zahl ist dreistellig und durch 10 teilbar.",
+    antwort: 160,
+    quelle: "GSM-Standard"
   }
 ];

@@ -3013,8 +3013,8 @@ window.FRAGEN_POTT = [
   },
   {
     frage: "In welchem Jahr erschien das Musikvideo zu Miley Cyrus' \"Wrecking Ball\"?",
-    tipp1: "Im selben Jahr kürten die Oxford Dictionaries \"Selfie\" zum Wort des Jahres.",
-    tipp2: "Kurz zuvor hatte sie mit ihrem Twerking-Auftritt bei den MTV Video Music Awards für einen Skandal gesorgt.",
+    tipp1: "Kurz zuvor hatte sie mit ihrem Twerking-Auftritt bei den MTV Video Music Awards für einen Skandal gesorgt.",
+    tipp2: "Im selben Jahr kürten die Oxford Dictionaries \"Selfie\" zum Wort des Jahres.",
     antwort: 2013,
     quelle: "YouTube/Vevo"
   }

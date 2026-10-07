@@ -2667,5 +2667,138 @@ window.FRAGEN_POTT = [
     tipp2: "Im selben Jahr wurde Harry Kane geboren.",
     antwort: 1993,
     quelle: "EA Sports"
+  },
+  {
+    frage: "Wie alt war Freddie Mercury, als er starb?",
+    tipp1: "Er starb 1991, nur einen Tag nachdem er öffentlich gemacht hatte, an AIDS erkrankt zu sein.",
+    tipp2: "Sein Alter entspricht der Umdrehungszahl einer Single-Schallplatte pro Minute.",
+    antwort: 45,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie alt war Avicii, als er starb?",
+    tipp1: "Sein Welthit \"Wake Me Up\" erschien 2013.",
+    tipp2: "Er wurde genau ein Jahr älter als die Mitglieder des berüchtigten \"Klub 27\".",
+    antwort: 28,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie alt war Prinzessin Diana, als sie starb?",
+    tipp1: "Sie starb 1997 bei einem Autounfall in Paris.",
+    tipp2: "Ihre Söhne William und Harry waren damals 15 und 12 Jahre alt.",
+    antwort: 36,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie alt war Bob Marley, als er starb?",
+    tipp1: "Er starb 1981 an Krebs, der in einem Zeh begonnen hatte.",
+    tipp2: "Er wurde älter als 30, aber jünger als 40.",
+    antwort: 36,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie alt war Marilyn Monroe, als sie starb?",
+    tipp1: "Sie starb 1962, wenige Monate nachdem sie John F. Kennedy \"Happy Birthday, Mr. President\" gesungen hatte.",
+    tipp2: "Ihr Todesalter ist eine Quadratzahl.",
+    antwort: 36,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie alt war Bruce Lee, als er starb?",
+    tipp1: "Er starb 1973, nur Tage vor dem Kinostart von \"Der Mann mit der Todeskralle\".",
+    tipp2: "Sein Alter ist eine Zweierpotenz.",
+    antwort: 32,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie alt war Tupac, als er starb?",
+    tipp1: "Er wurde 1996 in Las Vegas erschossen.",
+    tipp2: "Sein Rivale The Notorious B.I.G. starb ein halbes Jahr später – ein Jahr jünger als Tupac.",
+    antwort: 25,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"How I Met Your Mother\"?",
+    tipp1: "Die Mutter taucht erst in der letzten Staffel richtig auf.",
+    tipp2: "Es gibt genauso viele Staffeln, wie eine Baseball-Mannschaft Spieler auf dem Feld hat.",
+    antwort: 9,
+    quelle: "CBS"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"Modern Family\"?",
+    tipp1: "Die Serie gewann fünfmal in Folge den Emmy als beste Comedyserie.",
+    tipp2: "Es sind so viele Staffeln, wie eine Fußballmannschaft Spieler auf dem Platz hat.",
+    antwort: 11,
+    quelle: "ABC"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"The Big Bang Theory\"?",
+    tipp1: "Die Serie lief von 2007 bis 2019.",
+    tipp2: "Es sind so viele Staffeln, wie es Sternzeichen gibt.",
+    antwort: 12,
+    quelle: "CBS"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"Two and a Half Men\"?",
+    tipp1: "Charlie Sheen wurde nach acht Staffeln gefeuert und durch Ashton Kutcher ersetzt.",
+    tipp2: "Es sind so viele Staffeln, wie ein Dutzend Eier Stück hat.",
+    antwort: 12,
+    quelle: "CBS"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"Breaking Bad\"?",
+    tipp1: "Walter White ist zu Beginn der Serie 50 Jahre alt – am Ende 52.",
+    tipp2: "Es sind genauso viele Staffeln, wie eine Hand Finger hat.",
+    antwort: 5,
+    quelle: "AMC"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"Seinfeld\"?",
+    tipp1: "Sie gilt als die \"Show über nichts\".",
+    tipp2: "Jerry Seinfeld lehnte für eine weitere Staffel angeblich rund 5 Millionen Dollar pro Folge ab.",
+    antwort: 9,
+    quelle: "NBC"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"The Office\" (US-Version)?",
+    tipp1: "Steve Carell verließ die Serie nach der siebten Staffel.",
+    tipp2: "Die Serie lief von 2005 bis 2013.",
+    antwort: 9,
+    quelle: "NBC"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"Dr. House\"?",
+    tipp1: "Die Serie lief von 2004 bis 2012.",
+    tipp2: "Hugh Laurie war zeitweise der bestbezahlte Schauspieler einer US-Dramaserie.",
+    antwort: 8,
+    quelle: "FOX"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"Game of Thrones\"?",
+    tipp1: "Die letzte Staffel war mit nur sechs Folgen die kürzeste.",
+    tipp2: "Es gibt mehr Staffeln als bisher erschienene Bücher der Vorlage (5).",
+    antwort: 8,
+    quelle: "HBO"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"Brooklyn Nine-Nine\"?",
+    tipp1: "Nach der fünften Staffel wurde die Serie abgesetzt – und nach Fan-Protesten von einem anderen Sender gerettet.",
+    tipp2: "Die gesuchte Zahl ist um eins kleiner als jede Ziffer im Namen des Reviers.",
+    antwort: 8,
+    quelle: "NBC"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"Supernatural\"?",
+    tipp1: "Sie ist die am längsten laufende Fantasy-Serie mit echten Schauspielern im US-Fernsehen.",
+    tipp2: "Die Serie lief von 2005 bis 2020.",
+    antwort: 15,
+    quelle: "The CW"
+  },
+  {
+    frage: "Wie viele Staffeln hat \"Akte X\"?",
+    tipp1: "Nach dem eigentlichen Ende kehrte die Serie Jahre später noch einmal mit zwei kurzen Staffeln zurück.",
+    tipp2: "Die Wahrheit ist irgendwo da draußen – und die Zahl ist zweistellig.",
+    antwort: 11,
+    quelle: "FOX"
   }
 ];

@@ -2534,5 +2534,138 @@ window.FRAGEN_POTT = [
     tipp2: "Bei einem American-Football-Spiel stehen genauso viele Spieler gleichzeitig auf dem Feld.",
     antwort: 22,
     quelle: "Martin Gardner (\"Pointer-Karten\")"
+  },
+  {
+    frage: "Wie viele Tage verbrachte Kosmonaut Waleri Poljakow am Stück im All (Rekord)?",
+    tipp1: "Er blieb länger im All, als ein Jahr Tage hat.",
+    tipp2: "In dieser Zeit umrundete er die Erde rund 7.000-mal.",
+    antwort: 437,
+    quelle: "Guinness World Records"
+  },
+  {
+    frage: "Wie viele Stunden dauerte das längste Tennismatch der Geschichte (Isner gegen Mahut, Wimbledon 2010)?",
+    tipp1: "Das Match zog sich über drei Tage.",
+    tipp2: "Allein der letzte Satz endete 70:68.",
+    antwort: 11,
+    quelle: "Wimbledon"
+  },
+  {
+    frage: "Wie oft wurde der US-Parkranger Roy Sullivan vom Blitz getroffen – und überlebte jedes Mal?",
+    tipp1: "Er arbeitete im Shenandoah-Nationalpark.",
+    tipp2: "Es ist die Anzahl der Zwerge bei Schneewittchen.",
+    antwort: 7,
+    quelle: "Guinness World Records"
+  },
+  {
+    frage: "Wie viele Jahre lang hatte Charles Osborne ununterbrochen Schluckauf?",
+    tipp1: "Es begann 1922, als er ein Schwein zum Schlachten hochheben wollte.",
+    tipp2: "Der Schluckauf hörte erst ein Jahr vor seinem Tod auf – er wurde 97.",
+    antwort: 68,
+    quelle: "Guinness World Records"
+  },
+  {
+    frage: "Wie viele Tage blieb Randy Gardner beim berühmtesten Wachbleib-Rekord ohne Schlaf?",
+    tipp1: "Der Rekord stammt von einem 17-jährigen Schüler aus dem Jahr 1964.",
+    tipp2: "Er war länger als eine Woche wach.",
+    antwort: 11,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie viele Minuten dauerte die längste Rede in der Geschichte der UN-Vollversammlung?",
+    tipp1: "Gehalten wurde sie 1960 von Fidel Castro.",
+    tipp2: "Man hätte in der Zeit mehr als zwei Spielfilme schauen können.",
+    antwort: 269,
+    quelle: "Guinness World Records"
+  },
+  {
+    frage: "Wie groß war der kleinste Mensch, dessen Größe je zuverlässig gemessen wurde (in cm)?",
+    tipp1: "Er stammte aus Nepal.",
+    tipp2: "Eine handelsübliche Gitarre ist fast doppelt so lang.",
+    antwort: 54.6,
+    quelle: "Guinness World Records"
+  },
+  {
+    frage: "Wie viele Jahre versteckte sich der japanische Soldat Hiroo Onoda nach Ende des Zweiten Weltkriegs noch im Dschungel?",
+    tipp1: "Er ergab sich erst, als sein ehemaliger Vorgesetzter persönlich anreiste, um ihn vom Dienst zu entbinden.",
+    tipp2: "Als er aufgab, war Deutschland gerade zum zweiten Mal Fußball-Weltmeister geworden.",
+    antwort: 29,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie viele Tage war Liz Truss britische Premierministerin?",
+    tipp1: "Eine Boulevardzeitung ließ live einen Salatkopf filmen – der Salat hielt länger durch als sie.",
+    tipp2: "Ihre Amtszeit war kürzer als zwei Monate.",
+    antwort: 49,
+    quelle: "UK Government"
+  },
+  {
+    frage: "Wie viele Tage war Papst Johannes Paul I. im Amt?",
+    tipp1: "Er wurde 'der lächelnde Papst' genannt – im selben Jahr gab es gleich drei Päpste.",
+    tipp2: "Die Zahl entspricht dem Alter, in dem Jesus der Überlieferung nach gekreuzigt wurde.",
+    antwort: 33,
+    quelle: "Vatikan"
+  },
+  {
+    frage: "Wie viele Jahre saß Nelson Mandela im Gefängnis?",
+    tipp1: "Er kam 1990 frei und wurde vier Jahre später Präsident.",
+    tipp2: "Es war mehr als ein Vierteljahrhundert.",
+    antwort: 27,
+    quelle: "Nelson Mandela Foundation"
+  },
+  {
+    frage: "Für wie viele Millionen US-Dollar wurde 2024 eine mit Klebeband an die Wand geklebte Banane (Kunstwerk 'Comedian') versteigert?",
+    tipp1: "Die Banane selbst hatte vorher an einem Obststand in New York 35 Cent gekostet.",
+    tipp2: "Der Käufer aß sie wenige Tage später auf.",
+    antwort: 6.2,
+    quelle: "Sotheby's"
+  },
+  {
+    frage: "Wie viele Tonnen Gold lagern in Fort Knox (USA)?",
+    tipp1: "Nur sehr wenige Menschen durften die Tresore je betreten.",
+    tipp2: "Deutschland besitzt mit rund 3.350 Tonnen insgesamt etwas weniger Gold.",
+    antwort: 4580,
+    quelle: "US-Finanzministerium"
+  },
+  {
+    frage: "Mit wie vielen Toren Unterschied endete der höchste Sieg in einem offiziellen Fußball-Länderspiel?",
+    tipp1: "Ein einziger Spieler erzielte dabei 13 Tore.",
+    tipp2: "Australien spielte 2001 gegen Amerikanisch-Samoa – der Verlierer traf kein einziges Mal.",
+    antwort: 31,
+    quelle: "FIFA"
+  },
+  {
+    frage: "Wie lang ist die Zunge einer Giraffe (in cm)?",
+    tipp1: "Sie ist bläulich-schwarz gefärbt – vermutlich als Schutz vor Sonnenbrand.",
+    tipp2: "Sie ist länger als der Unterarm eines Erwachsenen.",
+    antwort: 50,
+    quelle: "Zoologie"
+  },
+  {
+    frage: "Wie viele Rentiere ziehen den Schlitten des Weihnachtsmanns?",
+    tipp1: "Eines davon hat eine leuchtend rote Nase.",
+    tipp2: "Die übrigen wurden in einem Gedicht von 1823 alle namentlich genannt.",
+    antwort: 9,
+    quelle: "Weihnachtsüberlieferung"
+  },
+  {
+    frage: "Wie viel Prozent der Weltbevölkerung haben grüne Augen?",
+    tipp1: "Es ist die seltenste der gängigen Augenfarben.",
+    tipp2: "In Irland und Schottland ist der Anteil besonders hoch.",
+    antwort: 2,
+    quelle: "American Academy of Ophthalmology"
+  },
+  {
+    frage: "Wie viele Blitze schlagen weltweit durchschnittlich pro Sekunde ein?",
+    tipp1: "Die meisten davon toben über den Tropen.",
+    tipp2: "Es sind weniger als 100.",
+    antwort: 44,
+    quelle: "NOAA"
+  },
+  {
+    frage: "In welchem Jahr erschien das erste FIFA-Videospiel von EA Sports?",
+    tipp1: "Auf dem Cover war kein Weltstar, sondern der Engländer David Platt – und Spielernamen gab es mangels Lizenz noch gar nicht.",
+    tipp2: "Im selben Jahr wurde Harry Kane geboren.",
+    antwort: 1993,
+    quelle: "EA Sports"
   }
 ];

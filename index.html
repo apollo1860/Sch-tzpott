@@ -409,12 +409,22 @@
     background:radial-gradient(circle,#c5533f 0 48%,transparent 50%),repeating-conic-gradient(#f4ede0 0 18deg,#c5533f 18deg 60deg);box-shadow:0 2px 6px rgba(0,0,0,.6);}
   input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;border:none;
     background:radial-gradient(circle,#c5533f 0 48%,transparent 50%),repeating-conic-gradient(#f4ede0 0 18deg,#c5533f 18deg 60deg);box-shadow:0 2px 6px rgba(0,0,0,.6);}
+  .raise-top small{display:block;font-size:11px;color:var(--gold-soft);margin-top:2px;}
+  .chip-row{display:flex;justify-content:space-between;gap:6px;margin:4px 0 12px;}
+  .pchip{--s:52px;border:none;padding:0;cursor:pointer;display:grid;place-items:center;
+    transition:transform .12s var(--ease-back), filter .15s;font-family:var(--sans);}
+  .pchip span{position:relative;z-index:2;font-weight:800;font-size:12.5px;color:#fff;background:rgba(0,0,0,.35);padding:3px 5px;border-radius:6px;line-height:1;font-variant-numeric:tabular-nums;}
+  .pchip.c-white{--cc:#e9e2d2;}
+  .pchip.c-white span{color:#1b1206;background:rgba(255,255,255,.55);}
+  .pchip:hover:not(:disabled){transform:translateY(-3px) rotate(-8deg);}
+  .pchip:active:not(:disabled){transform:scale(.9) rotate(20deg);}
+  .pchip:disabled{opacity:.35;cursor:not-allowed;}
   .presets{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px;}
   .guess-row{display:flex;gap:8px;}
   .guess-row input{margin:0;flex:1;}
   .guess-row .btn{flex:0 0 auto;}
   .host-row{display:flex;flex-direction:column;gap:8px;}
-  .host-row:has(#btnNextPhase:not(.hidden)){flex-direction:row;align-items:center;}
+  .host-row:has(#btnNextPhase:not(.hidden)):not(:has(#btnSkipQuestion:not(.hidden))){flex-direction:row;align-items:center;}
   .host-row:has(#btnNextPhase:not(.hidden)) .host-label{margin:0;flex:0 0 auto;}
   .host-label{font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin-bottom:-2px;}
 
@@ -629,10 +639,11 @@
       <button class="btn btn-gold" id="btnRaise">Raise</button>
     </div>
     <div class="raise-panel" id="raisePanel"><div><div class="raise-box">
-      <div class="raise-top"><span class="muted">Erhöhen auf</span><input type="number" id="raiseInput" inputmode="numeric"></div>
+      <div class="raise-top"><span class="muted">Erhöhen auf<small id="minRaiseInfo"></small></span><input type="number" id="raiseInput" inputmode="numeric"></div>
+      <div class="chip-row" id="chipRow"></div>
       <input type="range" id="raiseRange" min="0" max="100" step="10">
       <div class="presets">
-        <button class="btn btn-ghost btn-sm" data-preset="min">Min</button>
+        <button class="btn btn-ghost btn-sm" data-preset="min">↺ Min</button>
         <button class="btn btn-ghost btn-sm" data-preset="half">½ Pot</button>
         <button class="btn btn-ghost btn-sm" data-preset="pot">Pot</button>
         <button class="btn btn-ghost btn-sm" data-preset="max">Max</button>
@@ -651,6 +662,7 @@
         <div class="seg" id="hostSetSeg"></div>
       </div>
       <button class="btn btn-ghost btn-sm btn-block hidden" id="btnNextPhase">Weiter →</button>
+      <button class="btn btn-ghost btn-sm btn-block hidden" id="btnSkipQuestion">🔄 Frage überspringen (schon dran gewesen)</button>
       <button class="btn btn-gold btn-block hidden" id="btnRevealAnswer">🥁 Auflösen…</button>
       <button class="btn btn-gold btn-block hidden" id="btnNextHand">Nächste Frage →</button>
       <button class="btn btn-gold btn-block hidden" id="btnNewGame">Neues Spiel starten</button>
@@ -736,11 +748,11 @@ const DEMO_QUESTIONS = [
     quelle: "World Aquatics"
   },
   {
-    frage: "Wie viele Zähne hat ein erwachsener Mensch normalerweise (inkl. Weisheitszähne)?",
-    tipp1: "Kinder haben deutlich weniger — nur 20 Milchzähne.",
-    tipp2: "Die Zahl liegt zwischen 28 und 34.",
-    antwort: 32,
-    quelle: "Zahnärztekammer"
+    frage: "Wie viele Felder hat ein klassisches Sudoku?",
+    tipp1: "Das Rätsel besteht aus neun gleich großen Blöcken.",
+    tipp2: "Die Zahl liegt zwischen 75 und 90.",
+    antwort: 81,
+    quelle: "Sudoku-Regeln"
   },
   {
     frage: "Wie viele Herzen hat ein Oktopus?",
@@ -802,7 +814,16 @@ let prevRoom = null;
 let busy = false;
 
 const START_CHIPS = 1000;
-const SB_LEVELS = [10, 20, 40, 50, 100]; // Runde 1–5, ab Runde 6 wird der letzte Wert jede Hand verdoppelt
+// Blind-Rhythmus: 3 Hände auf Stufe 1, dann 5 Hände auf Stufe 2, danach jede Hand eine Stufe höher.
+// Jede Stufe verdoppelt die vorige (immer Vielfache von 25 €, passend zu den Chips 25/50/100/200/500).
+function smallBlindFor(handNumber){
+  let level;
+  if (handNumber < 3) level = 0;
+  else if (handNumber < 3 + 5) level = 1;
+  else level = 2 + (handNumber - 8);
+  return 25 * Math.pow(2, level);
+}
+const RAISE_CHIPS = [25, 50, 100, 200, 500];
 const BETTING_PHASES = ['guessing','tip1','tip2','reveal'];
 const END_PHASES = ['showdown','handEndFold','gameOver'];
 const PHASE_LABELS = {
@@ -1204,8 +1225,8 @@ $('btnCreate').addEventListener('click', async () => {
     status: 'lobby',
     hostId: myId,
     dealerIndex: 0,
-    smallBlind: SB_LEVELS[0],
-    bigBlind: SB_LEVELS[0]*2,
+    smallBlind: smallBlindFor(0),
+    bigBlind: smallBlindFor(0) * 2,
     handNumber: 0,
     createdAt: Date.now(),
     questionSet: defaultSet(),
@@ -1446,9 +1467,7 @@ async function startHand(dealerIndex, handNumber){
   const sbId = order[sbIdx];
   const bbId = order[bbIdx];
 
-  const sb = handNumber < SB_LEVELS.length
-    ? SB_LEVELS[handNumber]
-    : SB_LEVELS[SB_LEVELS.length - 1] * Math.pow(2, handNumber - (SB_LEVELS.length - 1));
+  const sb = smallBlindFor(handNumber);
   const bb = sb * 2;
 
   [[sbId, sb], [bbId, bb]].forEach(([pid, amt]) => {
@@ -1485,6 +1504,7 @@ async function startHand(dealerIndex, handNumber){
     winnerId: null,
     winnerIds: null,
     winAmount: null,
+    payouts: null,
     lastAction: null
   });
 }
@@ -1589,6 +1609,7 @@ async function doActionInner(type, amount){
       winnerId,
       winnerIds: [winnerId],
       winAmount: pot,
+      payouts: { [winnerId]: pot },
       lastAction
     });
     return;
@@ -1640,23 +1661,46 @@ async function advancePhase(room, players, pot, order, extra = {}){
 
 async function resolveShowdown(room, players, pot, order, extra = {}){
   const q = getQuestion(room);
-  const stillIn = order.filter(pid => !players[pid].folded);
-  const contenders = stillIn.filter(pid => hasGuess(players[pid]));
-  let winners;
-  if (!q || !contenders.length) {
-    winners = stillIn; // keiner hat geschätzt -> Pot wird geteilt statt zu verschwinden
-  } else {
-    const dist = (pid) => Math.abs(Number(players[pid].guess) - q.antwort);
-    const best = Math.min(...contenders.map(dist));
-    winners = contenders.filter(pid => dist(pid) === best); // Gleichstand -> Split-Pot
+  const dist = (pid) => (q && hasGuess(players[pid])) ? Math.abs(Number(players[pid].guess) - q.antwort) : Infinity;
+
+  // Side-Pots: Schichten nach Gesamteinsatz in dieser Hand. Geld gefoldeter Spieler steckt in
+  // den Schichten, die sie mitfinanziert haben, macht sie dafür aber nicht gewinnberechtigt.
+  const contrib = order.map(pid => ({ pid, amount: players[pid].totalHandBet || 0, folded: !!players[pid].folded }));
+  const levels = [...new Set(contrib.map(c => c.amount).filter(a => a > 0))].sort((a, b) => a - b);
+  const layers = [];
+  let prevLevel = 0, carry = 0;
+  levels.forEach(level => {
+    const atLevel = contrib.filter(c => c.amount >= level);
+    const amount = (level - prevLevel) * atLevel.length + carry;
+    carry = 0;
+    const eligible = atLevel.filter(c => !c.folded).map(c => c.pid);
+    if (eligible.length) layers.push({ amount, eligible });
+    else if (layers.length) layers[layers.length - 1].amount += amount; // niemand mehr drin -> an die Schicht darunter
+    else carry = amount;
+    prevLevel = level;
+  });
+  // Abweichungen (z. B. vom Host erzwungene Runden) landen in der obersten Schicht, damit nie Geld verschwindet
+  const layered = layers.reduce((s, l) => s + l.amount, 0);
+  if (pot !== layered) {
+    if (layers.length) layers[layers.length - 1].amount += pot - layered;
+    else layers.push({ amount: pot, eligible: order.filter(pid => !players[pid].folded) });
   }
-  const share = Math.floor(pot / winners.length);
-  let rest = pot - share * winners.length;
+
+  const payouts = {};
+  layers.forEach(layer => {
+    const best = Math.min(...layer.eligible.map(dist));
+    // keiner hat geschätzt -> Schicht wird geteilt; Gleichstand -> Split-Pot
+    const bestPids = best === Infinity ? layer.eligible : layer.eligible.filter(pid => dist(pid) === best);
+    const share = Math.floor(layer.amount / bestPids.length);
+    const rest = layer.amount - share * bestPids.length;
+    bestPids.forEach((pid, i) => { payouts[pid] = (payouts[pid] || 0) + share + (i === 0 ? rest : 0); });
+  });
+
   const nextPlayers = {};
   order.forEach(pid => { nextPlayers[pid] = { ...players[pid], bet: 0, hasActed: false }; });
-  winners.forEach((pid, i) => {
-    nextPlayers[pid].chips += share + (i === 0 ? rest : 0);
-  });
+  const winners = Object.keys(payouts).filter(pid => payouts[pid] > 0)
+    .sort((a, b) => payouts[b] - payouts[a]);
+  winners.forEach(pid => { nextPlayers[pid].chips += payouts[pid]; });
   await roomRef.update({
     players: nextPlayers,
     pot: 0,
@@ -1665,6 +1709,7 @@ async function resolveShowdown(room, players, pot, order, extra = {}){
     winnerId: winners[0] || null,
     winnerIds: winners.length ? winners : null,
     winAmount: pot,
+    payouts: winners.length ? payouts : null,
     ...extra
   });
 }
@@ -1696,6 +1741,21 @@ async function hostNextHand(){
   await startHand(nextDealer < 0 ? 0 : nextDealer, nextHandNum);
 }
 
+async function hostSkipQuestion(){
+  const snap = await roomRef.get();
+  const room = snap.val();
+  if (room.phase !== 'guessing') return;
+  // aus demselben Fragen-Satz wie die aktuelle Hand; die übersprungene Frage bleibt als „benutzt“ markiert
+  const q = pickQuestion({ ...room, questionSet: room.currentQuestionSet || 'demo' });
+  const updates = {
+    currentQuestionSet: q.setKey,
+    currentQuestionIndex: q.index,
+    usedQuestions: { ...(room.usedQuestions || {}), [q.setKey]: q.used }
+  };
+  activePlayers(room).forEach(pid => { updates['players/' + pid + '/guess'] = null; });
+  await roomRef.update(updates);
+}
+
 async function hostNewGame(){
   const snap = await roomRef.get();
   const room = snap.val();
@@ -1707,6 +1767,15 @@ async function hostNewGame(){
 }
 
 /* ================== DIFF -> EREIGNISSE ================== */
+function payoutOf(room, pid){
+  if (room.payouts && room.payouts[pid] !== undefined) return room.payouts[pid];
+  const w = winnersOf(room);
+  return w.includes(pid) ? Math.floor((room.winAmount || 0) / w.length) : 0;
+}
+function payoutList(room, winners){
+  return winners.map(pid => `${pid === myId ? 'Du' : (room.players[pid] || {}).name} ${eur(payoutOf(room, pid))}`).join(' · ');
+}
+
 function winnersOf(room){
   if (Array.isArray(room.winnerIds)) return room.winnerIds;
   if (room.winnerIds && typeof room.winnerIds === 'object') return Object.values(room.winnerIds);
@@ -1727,6 +1796,9 @@ function diffRoom(a, b){
     if (b.phase === 'gameOver') ev.push({ type: 'phase', from: a.phase, to: 'gameOver' });
     else if (isMyTurnNow(b)) ev.push({ type: 'myTurn' });
     return ev;
+  }
+  if (a.currentQuestionIndex !== b.currentQuestionIndex || a.currentQuestionSet !== b.currentQuestionSet) {
+    ev.push({ type: 'questionSkipped' });
   }
   const la = b.lastAction;
   if (la && la.seq && (!a.lastAction || a.lastAction.seq !== la.seq)) ev.push({ type: 'action', ...la });
@@ -1963,8 +2035,9 @@ function renderDock(room, order, me){
   else if (ended && !held) {
     const names = winners.map(pid => pid === myId ? 'Du' : (room.players[pid] || {}).name).filter(Boolean);
     const amt = room.winAmount || 0;
-    if (winners.includes(myId)) { status = winners.length > 1 ? `Split-Pot! Du bekommst ${eur(Math.floor(amt/winners.length))}` : `Du gewinnst ${eur(amt)}! 🎉`; statusMe = true; }
-    else status = names.length ? `${names.join(' & ')} ${names.length > 1 ? 'teilen sich' : 'gewinnt'} ${eur(amt)}` : 'Hand beendet';
+    if (winners.length > 1) { status = `Pot verteilt: ${payoutList(room, winners)}`; statusMe = winners.includes(myId); }
+    else if (winners.includes(myId)) { status = `Du gewinnst ${eur(amt)}! 🎉`; statusMe = true; }
+    else status = names.length ? `${names[0]} gewinnt ${eur(amt)}` : 'Hand beendet';
   }
   else if (me.busted) status = 'Du bist pleite und schaust zu.';
   else if (me.folded) status = 'Du hast gefoldet – warte auf die nächste Frage.';
@@ -2012,6 +2085,7 @@ function renderDock(room, order, me){
     $('btnNextPhase').classList.toggle('hidden', !betting);
     $('btnNextPhase').textContent = someoneStillToAct(room, order) ? 'Runde erzwingen →' : 'Weiter →';
     $('btnRevealAnswer').classList.toggle('hidden', phase !== 'preReveal');
+    $('btnSkipQuestion').classList.toggle('hidden', phase !== 'guessing');
     $('btnNextHand').classList.toggle('hidden', !(phase === 'showdown' || phase === 'handEndFold'));
     $('btnNewGame').classList.toggle('hidden', phase !== 'gameOver');
     $('hostSetWrap').classList.toggle('hidden', !ended);
@@ -2036,12 +2110,16 @@ function configureRaise(room, me){
   const minTo = Math.min(maxTo, room.currentBet + room.bigBlind);
   const step = room.smallBlind || 10;
   raiseCfg = { min: minTo, max: maxTo, step, pot: room.pot, currentBet: room.currentBet };
+  $('minRaiseInfo').textContent = `Mindest-Raise: ${eur(room.currentBet + room.bigBlind)}`;
+  document.querySelectorAll('.pchip').forEach(b => { b.disabled = maxTo <= minTo; });
   const r = $('raiseRange');
   r.min = minTo; r.max = maxTo; r.step = step;
   const canRaise = maxTo > room.currentBet;
   $('btnRaise').disabled = $('btnRaise').disabled || !canRaise;
+  const key = `${room.handId}_${room.phase}_${room.turnIndex}_${room.currentBet}`;
   const cur = Number($('raiseInput').value);
-  if (!cur || cur < minTo || cur > maxTo) setRaise(minTo);
+  if (key !== configureRaise.key || !cur || cur < minTo || cur > maxTo) setRaise(minTo);
+  configureRaise.key = key;
 }
 function setRaise(v){
   const { min, max, step } = raiseCfg;
@@ -2053,6 +2131,24 @@ function setRaise(v){
   r.style.setProperty('--p', max > min ? ((v - min) / (max - min) * 100) + '%' : '100%');
   $('btnRaiseConfirm').textContent = v >= max ? `All-In ${eur(v)}` : `Erhöhen auf ${eur(v)}`;
 }
+// Chip-Buttons: jeder Klick legt den Chip-Wert auf das Raise-Ziel drauf
+(function buildChipRow(){
+  const row = $('chipRow');
+  const cls = { 25: 'c-white', 50: 'c-red', 100: 'c-blue', 200: 'c-green', 500: 'c-black' };
+  RAISE_CHIPS.forEach(v => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip-ico pchip ' + cls[v];
+    b.innerHTML = `<span>${v}</span>`;
+    b.addEventListener('click', () => {
+      setRaise(Number($('raiseInput').value || raiseCfg.min) + v);
+      FX.flyChips(b, $('raiseInput'), { count: 1, dur: 420 });
+      setTimeout(() => FX.bump($('raiseInput')), 380);
+      Sound.play('chip', 1);
+    });
+    row.appendChild(b);
+  });
+})();
 $('raiseRange').addEventListener('input', (e) => { setRaise(Number(e.target.value)); if (!reduceMotion) Sound.play('tick'); });
 $('raiseInput').addEventListener('change', (e) => setRaise(Number(e.target.value)));
 document.querySelectorAll('[data-preset]').forEach(b => b.addEventListener('click', () => {
@@ -2228,9 +2324,9 @@ async function runShowdownSequence(room, prev, gen){
   const res = $('stageResult');
   res.innerHTML = '';
   const title = document.createElement('div'); title.className = 'win-title';
-  title.textContent = iWon ? (winners.length > 1 ? 'Split-Pot – du bist dabei!' : 'Du gewinnst!') : (names.length > 1 ? 'Split-Pot!' : `${names[0] || 'Niemand'} gewinnt!`);
+  title.textContent = iWon ? (winners.length > 1 ? 'Du bist dabei!' : 'Du gewinnst!') : (names.length > 1 ? 'Pot wird geteilt!' : `${names[0] || 'Niemand'} gewinnt!`);
   const sub = document.createElement('div'); sub.className = 'win-sub';
-  sub.textContent = winners.length > 1 ? `${names.join(' & ')} teilen sich ${eur(amount)}` : `${eur(amount)} wandern zu ${iWon ? 'dir' : names[0] || '—'}`;
+  sub.textContent = winners.length > 1 ? payoutList(room, winners) : `${eur(amount)} wandern zu ${iWon ? 'dir' : names[0] || '—'}`;
   res.append(title, sub);
   Sound.play('fanfare');
   vibrate(iWon ? [40, 60, 40, 60, 120] : 30);
@@ -2302,6 +2398,7 @@ function playEffects(events, prev, room){
       case 'newHand': fxNewHand(room, prev, e); break;
       case 'action': fxAction(room, e); break;
       case 'guess': fxGuess(room, e); break;
+      case 'questionSkipped': fxQuestionSkipped(); break;
       case 'phase': setTimeout(() => { if (gen === fxGen) fxPhase(room, prev, e, gen); }, delayAfterAction); break;
       case 'myTurn': setTimeout(() => { if (gen === fxGen && isMyTurnNow(currentRoom) && !Stage.el.classList.contains('show')) fxMyTurn(); }, delayAfterAction + 350); break;
     }
@@ -2366,6 +2463,14 @@ function fxAction(room, e){
       Sound.play('chip', 5);
       break;
   }
+}
+
+function fxQuestionSkipped(){
+  const card = $('qcard');
+  if (!reduceMotion) { card.classList.remove('deal'); void card.offsetWidth; card.classList.add('deal'); }
+  Sound.play('whoosh');
+  setTimeout(() => Sound.play('card'), 250);
+  toast('Neue Frage – Schätzungen wurden zurückgesetzt');
 }
 
 function fxGuess(room, e){
@@ -2487,6 +2592,7 @@ $('btnRaiseConfirm').addEventListener('click', () => {
 });
 $('btnNextPhase').addEventListener('click', hostForceNextPhase);
 $('btnRevealAnswer').addEventListener('click', hostRevealAnswer);
+$('btnSkipQuestion').addEventListener('click', hostSkipQuestion);
 $('btnNextHand').addEventListener('click', hostNextHand);
 $('btnNewGame').addEventListener('click', hostNewGame);
 $('btnMute').addEventListener('click', () => { $('btnMute').textContent = Sound.toggle() ? '🔇' : '🔊'; });

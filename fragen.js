@@ -2492,5 +2492,33 @@ window.FRAGEN_POTT = [
     tipp2: "Für die gleiche Anzahl Silbermünzen verriet Judas laut Bibel Jesus.",
     antwort: 30,
     quelle: "Guinness World Records"
+  },
+  {
+    frage: "Wie viele Siege holte ein Verein höchstens in einer einzigen Bundesliga-Saison (Rekord)?",
+    tipp1: "Noch nie hat ein Team alle 34 Saisonspiele gewonnen.",
+    tipp2: "Der FC Bayern stellte den Rekord zweimal auf und holte dabei einmal 90 und einmal 91 Punkte.",
+    antwort: 29,
+    quelle: "DFL"
+  },
+  {
+    frage: "Bei welcher Geschwindigkeit (in km/h) überlebte ein Mensch den schnellsten bekannten Motorradunfall?",
+    tipp1: "Der Fahrer, Jason McVicar, wurde noch am selben Tag aus dem Krankenhaus entlassen.",
+    tipp2: "Kurz vor seinem Sturz hatte er bei der Speed Week 2008 mit 407 km/h einen Rekord aufgestellt.",
+    antwort: 391,
+    quelle: "Guinness World Records"
+  },
+  {
+    frage: "Wie viele UNESCO-Welterbestätten hat Deutschland (Stand 2025)?",
+    tipp1: "Deutschland liegt damit weltweit auf Platz drei.",
+    tipp2: "Italien führt die Liste mit 61 Welterbestätten an.",
+    antwort: 55,
+    quelle: "UNESCO"
+  },
+  {
+    frage: "Welchen Radius (in km) hatte die Sperrzone um das Kernkraftwerk Tschernobyl?",
+    tipp1: "Nach Prypjat wurden zunächst alle Bewohner im Umkreis von 10 km evakuiert – danach wurde die Zone deutlich vergrößert.",
+    tipp2: "Der Radius ist etwas kürzer als die Luftlinie von Köln nach Düsseldorf.",
+    antwort: 30,
+    quelle: "IAEA"
   }
 ];

@@ -2471,5 +2471,26 @@ window.FRAGEN_POTT = [
     tipp2: "Die Zahl ist dreistellig und durch 10 teilbar.",
     antwort: 160,
     quelle: "GSM-Standard"
+  },
+  {
+    frage: "Wie alt kann ein Grönlandwal werden (in Jahren)?",
+    tipp1: "Diese Wale gehören zu den langlebigsten Säugetieren der Erde.",
+    tipp2: "Der älteste bekannte Grönlandwal überstand ca. drei Menschenleben – gemessen an der durchschnittlichen Lebenserwartung eines Menschen auf der Erde.",
+    antwort: 211,
+    quelle: "Meeresbiologie"
+  },
+  {
+    frage: "Wie viel US-Dollar kostete der erste Big Mac (mit Nachkommastellen)?",
+    tipp1: "Der Big Mac kostete damals weniger als der McDonald's-Hamburger heute.",
+    tipp2: "Im gleichen Jahr kostete der Cheeseburger bei McDonald's 0,15 US-Dollar.",
+    antwort: 0.45,
+    quelle: "McDonald's"
+  },
+  {
+    frage: "Wie viele Zentimeter lang ist der längste gemessene Damenbart?",
+    tipp1: "Die Zahl ist gleich groß wie das Mindestalter für US-Senatoren.",
+    tipp2: "Für die gleiche Anzahl Silbermünzen verriet Judas laut Bibel Jesus.",
+    antwort: 30,
+    quelle: "Guinness World Records"
   }
 ];

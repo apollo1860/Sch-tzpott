@@ -2933,5 +2933,61 @@ window.FRAGEN_POTT = [
     tipp2: "Er trat am ersten Weihnachtsfeiertag zurück – einen Tag später löste sich die Sowjetunion auf.",
     antwort: 1991,
     quelle: "Wikipedia"
+  },
+  {
+    frage: "In welchem Jahr wurde Markus Söder bayerischer Ministerpräsident?",
+    tipp1: "Er löste Horst Seehofer ab, der als Innenminister nach Berlin wechselte.",
+    tipp2: "Im selben Jahr flog Deutschland als amtierender Weltmeister schon in der WM-Vorrunde raus.",
+    antwort: 2018,
+    quelle: "Bayerische Staatsregierung"
+  },
+  {
+    frage: "In welchem Jahr wurde Wladimir Putin erstmals zum russischen Präsidenten gewählt?",
+    tipp1: "Kommissarisch hatte er das Amt schon am Silvestertag des Vorjahres von Boris Jelzin übernommen.",
+    tipp2: "Im selben Jahr trat Stefan Raab beim Eurovision Song Contest mit \"Wadde hadde dudde da?\" an.",
+    antwort: 2000,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie alt war Barack Obama bei seinem Amtsantritt als US-Präsident?",
+    tipp1: "Er war der erste afroamerikanische Präsident der USA.",
+    tipp2: "Donald Trump war zu diesem Zeitpunkt 62 Jahre alt.",
+    antwort: 47,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Seit wann gibt es Uber Eats in Deutschland?",
+    tipp1: "Im selben Jahr war die Serie \"Squid Game\" der Netflix-Hit schlechthin.",
+    tipp2: "Im selben Jahr ging in Deutschland die Ära Merkel zu Ende.",
+    antwort: 2021,
+    quelle: "Uber"
+  },
+  {
+    frage: "Seit wann gibt es Lieferando (zunächst unter dem Namen Yourdelivery)?",
+    tipp1: "Gegründet wurde das Start-up von drei Studenten in Berlin.",
+    tipp2: "Im selben Jahr stand Lady Gaga mit \"Poker Face\" auf Platz 1 der deutschen Charts.",
+    antwort: 2009,
+    quelle: "Lieferando"
+  },
+  {
+    frage: "In welchem Jahr wurde Gianni Infantino FIFA-Präsident?",
+    tipp1: "Er folgte auf Sepp Blatter, der nach einem Korruptionsskandal gehen musste.",
+    tipp2: "Im selben Jahr jagten Millionen Menschen mit \"Pokémon Go\" virtuelle Monster durch die Straßen.",
+    antwort: 2016,
+    quelle: "FIFA"
+  },
+  {
+    frage: "In welchem Jahr eröffnete der Club P1 in München in seiner heutigen Form?",
+    tipp1: "Schon Jahrzehnte vorher betrieben die Amerikaner dort einen Offiziersclub – der Name kommt von der Adresse Prinzregentenstraße 1.",
+    tipp2: "Im selben Jahr kam \"Ghostbusters\" in die Kinos.",
+    antwort: 1984,
+    quelle: "Haus der Kunst"
+  },
+  {
+    frage: "In welchem Jahr wurden die ersten Bitcoins geschürft?",
+    tipp1: "Der Erfinder nannte sich Satoshi Nakamoto – wer dahintersteckt, ist bis heute unbekannt.",
+    tipp2: "Im Jahr darauf bezahlte jemand 10.000 Bitcoin für zwei Pizzen.",
+    antwort: 2009,
+    quelle: "Wikipedia"
   }
 ];

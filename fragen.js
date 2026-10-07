@@ -2520,5 +2520,19 @@ window.FRAGEN_POTT = [
     tipp2: "Der Radius ist etwas kürzer als die Luftlinie von Köln nach Düsseldorf.",
     antwort: 30,
     quelle: "IAEA"
+  },
+  {
+    frage: "In welchem Jahr lag in der Sahara-Stadt Aïn Sefra (Algerien) bis zu 40 cm Schnee?",
+    tipp1: "Im selben Jahr wurde Frankreich in Russland Fußball-Weltmeister.",
+    tipp2: "Im selben Jahr trafen sich Donald Trump und Kim Jong-un in Singapur zu Gesprächen.",
+    antwort: 2018,
+    quelle: "Wetterdienste/Medienberichte"
+  },
+  {
+    frage: "Wie viele der 52 Karten eines klassischen Pokerdecks sehen auf der Vorderseite anders aus, wenn man sie auf den Kopf dreht?",
+    tipp1: "Italien hat weniger Regionen.",
+    tipp2: "Bei einem American-Football-Spiel stehen genauso viele Spieler gleichzeitig auf dem Feld.",
+    antwort: 22,
+    quelle: "Martin Gardner (\"Pointer-Karten\")"
   }
 ];

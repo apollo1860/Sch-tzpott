@@ -2989,5 +2989,19 @@ window.FRAGEN_POTT = [
     tipp2: "Im Jahr darauf bezahlte jemand 10.000 Bitcoin für zwei Pizzen.",
     antwort: 2009,
     quelle: "Wikipedia"
+  },
+  {
+    frage: "In welchem Jahr trug Jan Böhmermann sein Schmähgedicht über Erdoğan vor?",
+    tipp1: "Es ist gut zehn Jahre her.",
+    tipp2: "Im selben Jahr wurde Leicester City sensationell englischer Meister – vor der Saison standen die Wettquoten dafür bei 5000:1.",
+    antwort: 2016,
+    quelle: "ZDF"
+  },
+  {
+    frage: "Wie viele Zelte gibt es auf dem Oktoberfest (inklusive Oide Wiesn, große und kleine)?",
+    tipp1: "Die Oide Wiesn steuert drei große Zelte bei – der Großteil aller Zelte sind aber kleinere Festzelte.",
+    tipp2: "Es sind mehr als 30, aber weniger als 40.",
+    antwort: 38,
+    quelle: "Landeshauptstadt München"
   }
 ];

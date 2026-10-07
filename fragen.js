@@ -2852,8 +2852,8 @@ window.FRAGEN_POTT = [
   },
   {
     frage: "Wann kam der erste \"Ice Age\"-Film in die deutschen Kinos?",
-    tipp1: "Das Säbelzahn-Eichhörnchen Scrat jagt den ganzen Film über einer Eichel hinterher.",
-    tipp2: "Otto Waalkes, der dem Faultier Sid die deutsche Stimme lieh, war beim Kinostart 53 Jahre alt.",
+    tipp1: "Otto Waalkes, der dem Faultier Sid die deutsche Stimme lieh, war beim Kinostart 53 Jahre alt.",
+    tipp2: "Im selben Jahr wurde Brasilien zum fünften Mal Fußball-Weltmeister.",
     antwort: 2002,
     quelle: "Wikipedia"
   },

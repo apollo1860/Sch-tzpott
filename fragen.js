@@ -3017,5 +3017,180 @@ window.FRAGEN_POTT = [
     tipp2: "Im selben Jahr kürten die Oxford Dictionaries \"Selfie\" zum Wort des Jahres.",
     antwort: 2013,
     quelle: "YouTube/Vevo"
+  },
+  {
+    frage: "Wie viele Wochen stand 'Old Town Road' von Lil Nas X auf Platz 1 der US-Charts?",
+    tipp1: "Damit brach der Song den Rekord, den sich 'Despacito' und Mariah Careys 'One Sweet Day' geteilt hatten.",
+    tipp2: "Es waren mehr als vier Monate.",
+    antwort: 19,
+    quelle: "Billboard"
+  },
+  {
+    frage: "Wie viele Grammys hat Beyoncé gewonnen (Stand 2025)?",
+    tipp1: "Kein anderer Mensch hat mehr Grammys gewonnen.",
+    tipp2: "Den Preis für das Album des Jahres bekam sie erst 2025 – ausgerechnet für ein Country-Album.",
+    antwort: 35,
+    quelle: "Recording Academy"
+  },
+  {
+    frage: "Wie viele Punkte bekam Deutschland beim Eurovision Song Contest 2015 mit Ann Sophie?",
+    tipp1: "Gastgeber Österreich erging es im selben Finale ganz genauso.",
+    tipp2: "Die Zahl ist einstellig.",
+    antwort: 0,
+    quelle: "EBU"
+  },
+  {
+    frage: "Wie viele Sekunden dauert 'Bohemian Rhapsody' von Queen?",
+    tipp1: "Die Plattenfirma hielt den Song für viel zu lang fürs Radio.",
+    tipp2: "Er dauert knapp sechs Minuten.",
+    antwort: 355,
+    quelle: "EMI"
+  },
+  {
+    frage: "In welchem Jahr tanzte ganz Europa den 'Ketchup-Song' von Las Ketchup?",
+    tipp1: "Der Song kam nach dem Jahrtausendwechsel, aber noch vor dem ersten iPhone.",
+    tipp2: "Im selben Jahr wurde der Euro als Bargeld eingeführt.",
+    antwort: 2002,
+    quelle: "Offizielle Deutsche Charts"
+  },
+  {
+    frage: "In welchem Jahr stürmte 'Dragostea Din Tei' (Numa Numa) von O-Zone die deutschen Charts?",
+    tipp1: "Der Song kam ein paar Jahre nach dem Jahrtausendwechsel, aber noch bevor es YouTube gab.",
+    tipp2: "Im selben Jahr wurde Griechenland überraschend Fußball-Europameister.",
+    antwort: 2004,
+    quelle: "Offizielle Deutsche Charts"
+  },
+  {
+    frage: "Wie viele offizielle James-Bond-Kinofilme gibt es?",
+    tipp1: "Der bislang letzte, 'Keine Zeit zu sterben', war Daniel Craigs Abschied.",
+    tipp2: "Die Zahl entspricht einem Vierteljahrhundert.",
+    antwort: 25,
+    quelle: "EON Productions"
+  },
+  {
+    frage: "Wie viele Milliarden US-Dollar spielte 'Avatar' (2009) weltweit ein?",
+    tipp1: "Er ist der erfolgreichste Film aller Zeiten.",
+    tipp2: "'Avengers: Endgame' blieb knapp unter 2,8 Milliarden.",
+    antwort: 2.92,
+    quelle: "Box Office Mojo"
+  },
+  {
+    frage: "Wie alt war Macaulay Culkin beim Dreh von 'Kevin – Allein zu Haus'?",
+    tipp1: "Er war ungefähr so alt wie seine Filmfigur Kevin.",
+    tipp2: "Er war noch nicht im zweistelligen Alter.",
+    antwort: 9,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie viele Oscars gewann die 'Herr der Ringe'-Trilogie insgesamt?",
+    tipp1: "Der dritte Teil gewann jeden Oscar, für den er nominiert war.",
+    tipp2: "Es sind mehr als 15.",
+    antwort: 17,
+    quelle: "Academy Awards"
+  },
+  {
+    frage: "Wie viele WM-Tore schoss Miroslav Klose insgesamt?",
+    tipp1: "Er brauchte dafür vier Turniere.",
+    tipp2: "Lionel Messi kam bis einschließlich der WM 2026 auf 21 WM-Tore, Kylian Mbappé auf 22 – beide haben ihn damit überholt.",
+    antwort: 16,
+    quelle: "FIFA"
+  },
+  {
+    frage: "In welcher Spielminute fiel beim 7:1 gegen Brasilien (WM 2014) das 5:0 für Deutschland?",
+    tipp1: "Brasilien lag nach weniger als einer halben Stunde mit 0:5 hinten.",
+    tipp2: "Zwischen dem 2:0 und dem 5:0 lagen nur sechs Minuten.",
+    antwort: 29,
+    quelle: "FIFA"
+  },
+  {
+    frage: "Wie viele Pflichtspiele in Folge blieb Bayer Leverkusen 2023/24 ungeschlagen?",
+    tipp1: "Die Serie riss erst im Europa-League-Finale gegen Bergamo.",
+    tipp2: "Die Zahl ist größer als 50.",
+    antwort: 51,
+    quelle: "DFL/UEFA"
+  },
+  {
+    frage: "Wie viele Kilogramm wiegt ein Curlingstein maximal?",
+    tipp1: "Die Steine bestehen aus Granit von einer einzigen kleinen schottischen Insel.",
+    tipp2: "Er ist schwerer als ein Getränkekasten mit vollen Glasflaschen.",
+    antwort: 20,
+    quelle: "World Curling"
+  },
+  {
+    frage: "Wie viele Tage war Jürgen Klinsmann Trainer bei Hertha BSC?",
+    tipp1: "Seinen Rücktritt verkündete er per Facebook-Post.",
+    tipp2: "Es waren nicht einmal drei Monate.",
+    antwort: 76,
+    quelle: "Hertha BSC"
+  },
+  {
+    frage: "Wie oft war Lothar Matthäus verheiratet?",
+    tipp1: "Er war öfter verheiratet als die meisten Menschen – aber seltener als Elizabeth Taylor (8-mal).",
+    tipp2: "Man kann die Zahl noch an einer Hand abzählen.",
+    antwort: 5,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie viele Ehefrauen hatte König Heinrich VIII. von England?",
+    tipp1: "Zwei davon ließ er hinrichten.",
+    tipp2: "Er hatte halb so viele Ehefrauen, wie ein Jahr Monate hat.",
+    antwort: 6,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wie viele Megabyte Speicher hatte die erste Festplatte der Welt (IBM, 1956)?",
+    tipp1: "Sie wog rund eine Tonne.",
+    tipp2: "Ein einziges heutiges Handyfoto würde kaum darauf passen.",
+    antwort: 3.75,
+    quelle: "IBM"
+  },
+  {
+    frage: "Wie viel wog das erste Mobiltelefon der Welt (Motorola, 1973) in Kilogramm?",
+    tipp1: "Der Akku hielt gerade einmal rund 30 Minuten Gesprächszeit.",
+    tipp2: "Es war ungefähr so schwer wie eine Packung Mehl.",
+    antwort: 1.1,
+    quelle: "Motorola"
+  },
+  {
+    frage: "In welchem Jahr kippten sich Millionen Menschen für die 'Ice Bucket Challenge' Eiswasser über den Kopf?",
+    tipp1: "Gesammelt wurden Spenden für die Erforschung der Nervenkrankheit ALS.",
+    tipp2: "Im selben Jahr wurde Deutschland in Brasilien Fußball-Weltmeister.",
+    antwort: 2014,
+    quelle: "ALS Association"
+  },
+  {
+    frage: "Wie viele Geschmacksrichtungen haben die klassischen Haribo Goldbären?",
+    tipp1: "Es sind mehr Sorten, als eine Ampel Farben hat, aber weniger als zehn.",
+    tipp2: "Die farblosen Bären schmecken nach Ananas – jede Sorte hat ihre eigene Farbe.",
+    antwort: 6,
+    quelle: "Haribo"
+  },
+  {
+    frage: "Wie viele Glocken hat das Glockenspiel am Münchner Rathaus?",
+    tipp1: "Dazu drehen sich 32 lebensgroße Figuren.",
+    tipp2: "Es sind mehr Glocken als Figuren.",
+    antwort: 43,
+    quelle: "muenchen.de"
+  },
+  {
+    frage: "Wie viele Sitzplätze hat der Große Saal der Elbphilharmonie?",
+    tipp1: "Kein Platz ist mehr als 30 Meter vom Dirigenten entfernt.",
+    tipp2: "Die Zahl ist vierstellig.",
+    antwort: 2100,
+    quelle: "Elbphilharmonie"
+  },
+  {
+    frage: "Aus wie vielen Inseln bestehen die Malediven?",
+    tipp1: "Nur rund 200 davon sind bewohnt.",
+    tipp2: "Die Zahl ist vierstellig.",
+    antwort: 1192,
+    quelle: "Regierung der Malediven"
+  },
+  {
+    frage: "Wie viele Kilogramm Nahrung frisst ein ausgewachsener Elefant pro Tag?",
+    tipp1: "Er verbringt bis zu 18 Stunden am Tag mit Fressen.",
+    tipp2: "Das entspricht ungefähr dem Gewicht von zwei erwachsenen Männern.",
+    antwort: 150,
+    quelle: "Zoologie"
   }
 ];

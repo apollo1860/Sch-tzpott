@@ -2800,5 +2800,68 @@ window.FRAGEN_POTT = [
     tipp2: "Die Wahrheit ist irgendwo da draußen – und die Zahl ist zweistellig.",
     antwort: 11,
     quelle: "FOX"
+  },
+  {
+    frage: "Wann erschien die erste Staffel von \"Haus des Geldes\"?",
+    tipp1: "Die Räuber tragen rote Overalls und Masken des Malers Salvador Dalí.",
+    tipp2: "Im selben Jahr wurde Donald Trump zum ersten Mal als US-Präsident vereidigt.",
+    antwort: 2017,
+    quelle: "Netflix/Antena 3"
+  },
+  {
+    frage: "Wann erschien die erste Staffel von \"Stranger Things\"?",
+    tipp1: "Die Serie spielt in den 80ern im fiktiven Städtchen Hawkins, Indiana.",
+    tipp2: "Im selben Jahr stimmten die Briten für den Brexit.",
+    antwort: 2016,
+    quelle: "Netflix"
+  },
+  {
+    frage: "Wann erschien die erste Staffel von \"Wednesday\" auf Netflix?",
+    tipp1: "Jenna Ortegas Tanzszene ging auf TikTok viral – getanzt zu einem Song von The Cramps.",
+    tipp2: "Im selben Jahr fand die Fußball-WM in Katar statt.",
+    antwort: 2022,
+    quelle: "Netflix"
+  },
+  {
+    frage: "Wann erschien die erste Staffel von \"Bridgerton\"?",
+    tipp1: "Produziert wurde die Serie von Shonda Rhimes, der Macherin von \"Grey's Anatomy\".",
+    tipp2: "Sie startete an Weihnachten – in einem Jahr, in dem viele wegen Lockdowns ohnehin zu Hause blieben.",
+    antwort: 2020,
+    quelle: "Netflix"
+  },
+  {
+    frage: "Wann erschien die erste Staffel von \"Das Damengambit\" (The Queen's Gambit)?",
+    tipp1: "Nach dem Serienstart schnellten die Verkäufe von Schachbrettern in den USA um über 1.000 % in die Höhe.",
+    tipp2: "Im selben Jahr wurde Joe Biden zum US-Präsidenten gewählt.",
+    antwort: 2020,
+    quelle: "Netflix"
+  },
+  {
+    frage: "Wann kam der erste Indiana-Jones-Film in die deutschen Kinos?",
+    tipp1: "Harrison Ford war damals schon als Han Solo bekannt.",
+    tipp2: "Im selben Jahr heirateten Prinz Charles und Lady Diana.",
+    antwort: 1981,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wann kam der erste \"Zurück in die Zukunft\"-Film in die deutschen Kinos?",
+    tipp1: "Die Zeitmaschine ist ein DeLorean, der bei 88 Meilen pro Stunde durch die Zeit springt.",
+    tipp2: "Im selben Jahr fand das legendäre Live-Aid-Konzert statt.",
+    antwort: 1985,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wann kam der erste \"Ice Age\"-Film in die deutschen Kinos?",
+    tipp1: "Das Säbelzahn-Eichhörnchen Scrat jagt den ganzen Film über einer Eichel hinterher.",
+    tipp2: "Otto Waalkes, der dem Faultier Sid die deutsche Stimme lieh, war beim Kinostart 53 Jahre alt.",
+    antwort: 2002,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Wann kam \"Findet Nemo\" in die deutschen Kinos?",
+    tipp1: "Nach dem Film wollten plötzlich viele Kinder einen Clownfisch als Haustier.",
+    tipp2: "Im selben Jahr flog die Concorde ihren letzten Linienflug.",
+    antwort: 2003,
+    quelle: "Wikipedia"
   }
 ];

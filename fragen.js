@@ -2863,5 +2863,75 @@ window.FRAGEN_POTT = [
     tipp2: "Im selben Jahr flog die Concorde ihren letzten Linienflug.",
     antwort: 2003,
     quelle: "Wikipedia"
+  },
+  {
+    frage: "In welchem Jahr nahm Deutschland zum ersten Mal an einer Fußball-WM teil?",
+    tipp1: "Die WM fand in Italien statt – und Deutschland wurde direkt Dritter.",
+    tipp2: "Im selben Jahr hatte Donald Duck seinen allerersten Auftritt.",
+    antwort: 1934,
+    quelle: "FIFA"
+  },
+  {
+    frage: "Seit wann gibt es Fielmann?",
+    tipp1: "Im selben Jahr hüpfte \"Popcorn\" von Hot Butter durch die Charts.",
+    tipp2: "Im selben Jahr fanden die Olympischen Sommerspiele in München statt.",
+    antwort: 1972,
+    quelle: "Fielmann"
+  },
+  {
+    frage: "Seit wann gibt es die Stadt Milton Keynes in England?",
+    tipp1: "Im selben Jahr sang Scott McKenzie, man solle in San Francisco Blumen im Haar tragen.",
+    tipp2: "Im selben Jahr startete in Deutschland das Farbfernsehen – per Knopfdruck von Willy Brandt.",
+    antwort: 1967,
+    quelle: "Wikipedia"
+  },
+  {
+    frage: "Seit wann gibt es die Süddeutsche Zeitung?",
+    tipp1: "Sie bekam als erste Zeitung in Bayern nach dem Krieg eine Lizenz der US-Militärregierung.",
+    tipp2: "Im selben Jahr erschien in Schweden das erste Buch über Pippi Langstrumpf.",
+    antwort: 1945,
+    quelle: "Süddeutsche Zeitung"
+  },
+  {
+    frage: "In welchem Jahr lief die erste Folge von \"Wetten, dass..?\"?",
+    tipp1: "Im selben Jahr ging in den USA der Musiksender MTV auf Sendung – mit \"Video Killed the Radio Star\".",
+    tipp2: "Nicoles \"Ein bisschen Frieden\" kam erst ein Jahr später.",
+    antwort: 1981,
+    quelle: "ZDF"
+  },
+  {
+    frage: "In welchem Jahr lief die erste Folge von \"Verstehen Sie Spaß?\"?",
+    tipp1: "Im selben Jahr galoppierte Joachim Witt mit \"Goldener Reiter\" durch die Charts.",
+    tipp2: "Ein Jahr später sang Markus \"Ich will Spaß\" – das passende Motto für die Show.",
+    antwort: 1981,
+    quelle: "ARD"
+  },
+  {
+    frage: "In welchem Jahr gab Thomas Gottschalk \"Wetten, dass..?\" zum ersten Mal ab?",
+    tipp1: "Im selben Jahr wurde Dänemark Europameister, obwohl es sich eigentlich gar nicht qualifiziert hatte.",
+    tipp2: "Im selben Jahr tauchte \"Das Boot\" von U96 wochenlang auf Platz 1 der deutschen Charts.",
+    antwort: 1992,
+    quelle: "ZDF"
+  },
+  {
+    frage: "In welchem Jahr trat Papst Benedikt XVI. zurück?",
+    tipp1: "Im selben Jahr tanzte die halbe Welt den \"Harlem Shake\".",
+    tipp2: "Kurz darauf standen sich im Champions-League-Finale in Wembley zwei deutsche Teams gegenüber.",
+    antwort: 2013,
+    quelle: "Vatikan"
+  },
+  {
+    frage: "In welchem Jahr trat Willy Brandt als Bundeskanzler zurück?",
+    tipp1: "Im selben Jahr gewann ABBA mit \"Waterloo\" den Eurovision Song Contest.",
+    tipp2: "Auslöser war die Enttarnung seines engen Mitarbeiters Günter Guillaume als DDR-Spion.",
+    antwort: 1974,
+    quelle: "Bundesregierung"
+  },
+  {
+    frage: "In welchem Jahr trat Michail Gorbatschow zurück?",
+    tipp1: "Im selben Jahr erschien Nirvanas \"Smells Like Teen Spirit\".",
+    tipp2: "Er trat am ersten Weihnachtsfeiertag zurück – einen Tag später löste sich die Sowjetunion auf.",
+    antwort: 1991,
+    quelle: "Wikipedia"
   }
 ];

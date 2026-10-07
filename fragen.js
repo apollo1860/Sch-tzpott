@@ -3003,5 +3003,19 @@ window.FRAGEN_POTT = [
     tipp2: "Es sind mehr als 30, aber weniger als 40.",
     antwort: 38,
     quelle: "Landeshauptstadt München"
+  },
+  {
+    frage: "Wie viele McDonald's-Filialen gibt es in Deutschland (Stand 2024)?",
+    tipp1: "Burger King kam zur gleichen Zeit auf rund 750 Restaurants in Deutschland.",
+    tipp2: "Vor rund zehn Jahren (2015) gab es noch 1.478 McDonald's-Filialen in Deutschland.",
+    antwort: 1365,
+    quelle: "McDonald's Deutschland"
+  },
+  {
+    frage: "In welchem Jahr erschien das Musikvideo zu Miley Cyrus' \"Wrecking Ball\"?",
+    tipp1: "Im selben Jahr kürten die Oxford Dictionaries \"Selfie\" zum Wort des Jahres.",
+    tipp2: "Kurz zuvor hatte sie mit ihrem Twerking-Auftritt bei den MTV Video Music Awards für einen Skandal gesorgt.",
+    antwort: 2013,
+    quelle: "YouTube/Vevo"
   }
 ];
